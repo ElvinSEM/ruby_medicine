@@ -70,8 +70,6 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     bcrypt (3.1.20)
     bindex (0.8.1)
-    bootsnap (1.17.0)
-      msgpack (~> 1.2)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -94,6 +92,10 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.8.1)
+    dotenv-rails (2.8.1)
+      dotenv (= 2.8.1)
+      railties (>= 3.2)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -107,9 +109,6 @@ GEM
     irb (1.9.1)
       rdoc
       reline (>= 0.3.8)
-    jbuilder (2.11.5)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -123,7 +122,6 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
-    msgpack (1.7.2)
     mysql2 (0.5.5)
     net-imap (0.4.7)
       date
@@ -227,12 +225,12 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
-  bootsnap
+  builder
   capybara
   debug
   devise
+  dotenv-rails (~> 2.8, >= 2.8.1)
   importmap-rails
-  jbuilder
   mysql2 (~> 0.5)
   puma (~> 5.0)
   rails (~> 7.0.8)
@@ -240,7 +238,6 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   turbo-rails
-  tzinfo-data
   web-console
 
 RUBY VERSION
