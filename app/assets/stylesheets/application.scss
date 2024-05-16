@@ -1,0 +1,44 @@
+
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+header {
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+nav a {
+  color: #ffffff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+h1, h2 {
+  color: #333;
+}
+#intro, #services, #doctors, #testimonials, #contact {
+  padding: 20px;
+  margin: 20px;
+  background: #fff;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+ul li {
+  padding: 5px 0;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #333;
+  color: #fff;
+}

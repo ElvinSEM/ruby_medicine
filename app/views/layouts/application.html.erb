@@ -1,16 +1,105 @@
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="ru">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>Офтальмологическая клиника</title>-->
+  <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%#= csrf_meta_tags %>
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+<!--  <h1>Офтальмологическая клиника "Видение"</h1>-->
+<!--  <nav>-->
+    <%#= link_to 'Главная', root_url %>
+    <%#= link_to 'О клинике', "#" %>
+    <%#= link_to 'Услуги', "#" %>
+    <%#= link_to 'Врачи', doctors_path, 'data-turbolinks': 'false' %>    <%#= link_to 'Контакты', "#" %>
+<!--  </nav>-->
+<!--</header>-->
+
+<!--<main>-->
+<!--  <section id="intro">-->
+<!--    <h2>Добро пожаловать в клинику "Видение"!</h2>-->
+<!--    <p>Мы предоставляем полный спектр офтальмологических услуг для всей семьи.</p>-->
+<!--  </section>-->
+
+<!--  <section id="services">-->
+<!--    <h2>Наши услуги</h2>-->
+<!--    <ul>-->
+<!--      <li>Диагностика зрения</li>-->
+<!--      <li>Лечение заболеваний глаз</li>-->
+<!--      <li>Операции на глаза</li>-->
+<!--      <li>Коррекция зрения</li>-->
+<!--    </ul>-->
+<!--  </section>-->
+
+<!--  <section id="doctors">-->
+<!--    <h2>Наши специалисты</h2>-->
+<!--    <p>В нашей клинике работают высококвалифицированные врачи-офтальмологи.</p>-->
+<!--     Здесь можно добавить карточки врачей или ссылку на страницу с врачами -->
+<!--  </section>-->
+
+<!--  <section id="testimonials">-->
+<!--    <h2>Отзывы пациентов</h2>-->
+<!--    <p>Читайте отзывы наших пациентов о качестве предоставляемых услуг.</p>-->
+<!--     Здесь можно добавить отзывы пациентов -->
+<!--  </section>-->
+
+<!--  <section id="contact">-->
+<!--    <h2>Контактная информация</h2>-->
+<!--    <address>-->
+<!--      <strong>Адрес клиники:</strong> г. Москва, ул. Здоровья, д. 10<br>-->
+<!--      <strong>Телефон:</strong> 8 (800) 123-45-67<br>-->
+<!--      <strong>Email:</strong> info@visionclinic.ru-->
+<!--    </address>-->
+<!--  </section>-->
+<!--</main>-->
+
+<!--<footer>-->
+<!--  <p>&copy; 2024 Офтальмологическая клиника "Видение". Все права защищены.</p>-->
+<!--</footer>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>HospitalApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Офтальмологическая клиника</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+<header>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= link_to 'Офтальмологическая клиника "Видение"', root_path %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <nav>
+    <%= link_to 'Записаться', appointments_path %>
+    <%= link_to 'Главная', root_path %>
+    <%= link_to 'О клинике', "#" %>
+    <%= link_to 'Услуги', "#" %>
+    <%= link_to 'Врачи', doctors_path %>
+    <%= link_to 'Контакты', "#" %>
+  </nav>
+</header>
+
+<main>
+  <!-- Основное содержимое страницы -->
+  <%= yield %>
+</main>
+
+<footer>
+  <!-- Общий подвал сайта -->
+  <p>&copy; <%= Time.current.year %> Офтальмологическая клиника "Видение". Все права защищены.</p>
+</footer>
+</body>
 </html>
+

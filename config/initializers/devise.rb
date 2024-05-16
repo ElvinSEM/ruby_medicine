@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '15a86bb4fd16841add7f482cd6bfe7f4bb8a74f717557d129eb56ec24f33cb63a248e97cf39d4bac9b087f8f84ee65bd58aff90bc9a7bfc8a1035cb8350e2b7d'
+  # config.secret_key = '8650a2e6544a8ecf732d68439e5715a1468a38eb6e76a9b4ccdc2c05eecdd540d7e2523eb6725a697e5a395a67daf087125288cc1211ae47b6f5105de0dc51ec'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  # config.authentication_keys = [:email]
+   config.authentication_keys = [:email]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '32a310384bbddfc775c5b96aa9bd64cbc7c12d37494b0f58fad53c14d9e6376d3881b4bd077d8e5e2e459efbc02b751e423570a8899fc7d377bf0fe380c24790'
+  # config.pepper = '53603f33ee7c11aa18041401c3d47ad0fe6290f464460e304ff102caddd5be5664222701ec7392f2760faa18ef3000d96c419601b9b20cdd92e3301c39c4a88a'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -263,10 +263,11 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ['*/*', :html, :turbo_stream]
+   config.navigational_formats = ['*/*', :html, :turbo_stream]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  config.sign_out_via = :get
+
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting

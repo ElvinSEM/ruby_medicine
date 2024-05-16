@@ -1,8 +1,27 @@
 Rails.application.routes.draw do
-  get 'home/index'
   devise_for :users
-  root to: 'home#index'
-  resources :doctors
-  resources :nurses
+  # resources :users
+
+  root 'home#index'
+  resources :appointments
   resources :patients
+  resources :doctors
 end
+
+# resources :main, only: [:index, :show]
+# # Ресурсы для пациентов
+# resources :patients do
+#   resources :appointments # вложенные ресурсы для записей на прием
+# end
+#
+# # Ресурсы для врачей
+# resources :doctors do
+#   resources :appointments # вложенные ресурсы для записей на прием
+# end
+#
+# # Ресурсы для записей на прием
+# resources :appointments
+#
+# # Можно добавить дополнительные маршруты для специфических страниц или действий
+# # get 'special_page', to: 'controller#action'
+#
