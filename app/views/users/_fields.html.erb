@@ -1,0 +1,5 @@
+<%= form.fields_for :user do |user_fields| %>
+  <%= user_fields.text_field :username, placeholder: "Имя пользователя" %>
+  <%= user_fields.password_field :password, placeholder: "Пароль" %>
+  <%= user_fields.password_field :password_confirmation, placeholder: "Подтверждение пароля" %>
+<% end %>

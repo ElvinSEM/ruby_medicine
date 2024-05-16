@@ -1,0 +1,26 @@
+<!--<p style="color: green"><%#= notice %></p>-->
+
+<%#= render @user %>
+
+<!--<div>-->
+<!--  <%#= link_to "Edit this user", edit_user_path(@user) %> |-->
+  <%#= link_to "Back to users", users_path %>
+
+  <%#= button_to "Destroy this user", @user, method: :delete %>
+<!--</div>-->
+
+
+<!-- app/views/users/show.html.erb -->
+<h1>Личный кабинет</h1>
+
+<div class="user-profile">
+  <h2>Персональные данные</h2>
+  <p><strong>Имя:</strong> <%= @user.name %></p>
+  <p><strong>Email:</strong> <%= @user.email %></p>
+  <!-- Другие персональные данные -->
+
+  <h2>История приемов</h2>
+  <%= render 'appointments/list', appointments: @user.appointments %>
+
+  <!-- Дополнительные разделы -->
+</div>

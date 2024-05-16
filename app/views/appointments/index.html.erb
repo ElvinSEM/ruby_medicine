@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Appointments</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Doctor</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @appointments.each do |appointment| %>
+    <tr>
+      <td><%= appointment.doctor.name %></td>
+      <td><%= appointment.appointment_date.strftime("%Y-%m-%d %H:%M") %></td>
+      <td><%= appointment.status %></td>
+      <td>
+        <%= link_to "Show", appointment %>
+        <%= link_to "Edit", edit_appointment_path(appointment) %>
+        <%= link_to "Delete", appointment, method: :delete, data: { confirm: "Are you sure?" } %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New Appointment", new_appointment_path %>

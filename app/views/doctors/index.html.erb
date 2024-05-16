@@ -1,0 +1,41 @@
+<h1>Doctors</h1>
+
+<%= link_to 'New Doctor', new_doctor_path %>
+
+<div id="doctors">
+  <% @doctors.each do |doctor| %>
+    <%= render doctor %>
+    <p><%= link_to 'Show this doctor', doctor_path(doctor) %></p>
+  <% end %>
+</div>
+
+<!--<p style="color: green"><%#= notice %></p>-->
+
+<!--<h1>Doctors</h1>-->
+
+<!--<div id="doctors">-->
+  <%# @doctors.each do |doctor| %>
+    <%#= render doctor %>
+<!--    <p>-->
+      <%#= link_to "Show this doctor", doctor %>
+<!--    </p>-->
+  <%# end %>
+<!--</div>-->
+
+<%#= link_to "New doctor", new_doctor_path %>
+
+
+<!--<h1>Врачи</h1>-->
+
+<!--<div class="doctors-index">-->
+  <%# @doctors.each do |doctor| %>
+<!--    <div class="doctor-card">-->
+<!--      <h2 class="doctor-name"><%#= doctor.name %></h2>-->
+<!--      <p class="doctor-specialty"><%#= doctor.specialty %></p>-->
+<!--      <p class="doctor-phone"><%#= doctor.phone %></p>-->
+      <%#= link_to 'Подробнее', doctor_path(doctor), class: 'btn btn-info' %>
+<!--    </div>-->
+  <%# end %>
+<!--</div>-->
+
+<%#= link_to 'Добавить врача', new_doctor_path, class: 'btn btn-primary' %>
