@@ -1,0 +1,11 @@
+{
+  "name": "HospitalApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://ElvinSEM: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@github.com/ElvinSEM/ruby_medicine.git",
+  "author": "ElvinSEM <elvin.seytibramov@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.19.9"
+  }
+}

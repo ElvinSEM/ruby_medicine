@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @appointment %>
+
+<!--<div>-->
+<!--  <%#= link_to "Edit this appointment", edit_appointment_path(@appointment) %> |-->
+  <%#= link_to "Back to appointments", appointments_path %>
+
+  <%#= button_to "Destroy this appointment", @appointment, method: :delete %>
+<!--</div>-->
+
+
+<!-- app/views/appointments/show.html.erb-->
+<p>Дата приема: <%= @appointment.appointment_date %></p>
+<p>Врач: <%= @appointment.doctor.name %></p>
+<p>Описание проблемы: <%= @appointment.problem_description %></p>
+ Дополнительные детали записи на прием
+
+<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to 'Back to List', appointments_path %>

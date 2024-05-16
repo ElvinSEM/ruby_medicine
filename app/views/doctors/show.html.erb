@@ -1,0 +1,48 @@
+<h1><%= @doctor.name %></h1>
+
+<p><strong>Специальность:</strong> <%= @doctor.specialty %></p>
+<p><strong>Телефон:</strong> <%= @doctor.phone %></p>
+
+<%= link_to 'Редактировать', edit_doctor_path(@doctor) %> |
+<%= link_to 'Назад к списку', doctors_path %>
+
+
+<!--<p style="color: green"><%#= notice %></p>-->
+
+<%#= render @doctor %>
+
+<!--<div>-->
+<!--  <%#= link_to "Edit this doctor", edit_doctor_path(@doctor) %> |-->
+  <%#= link_to "Back to doctors", doctors_path %>
+
+  <%#= button_to "Destroy this doctor", @doctor, method: :delete %>
+<!--</div>-->
+
+
+
+<!--<h1><%#= @doctor.name %></h1>-->
+
+<!--<p><strong>Специальность:</strong> <%#= @doctor.specialty %></p>-->
+<!--<p><strong>Телефон:</strong> <%#= @doctor.phone %></p>-->
+
+<!--<%#= link_to 'Редактировать', edit_doctor_path(@doctor), class: 'btn btn-warning' %> |-->
+<%#= link_to 'Назад к списку', doctors_path, class: 'btn btn-secondary' %>
+
+
+
+
+<!--<p style="color: green"><%#= notice %></p>-->
+
+<%#= render @doctor %>
+<!--<h2><%#= @doctor.name %>'s Information</h2>-->
+
+<!--<p><%#= link_to 'Schedule', doctor_schedules_path(@doctor) %></p>-->
+
+<%#= render 'schedules/table', schedules: @schedule || []%>
+<%#= render 'appointment', appointments: @appointments || []%>
+<!--<div>-->
+<!--  <%#= link_to "Edit this doctor", edit_doctor_path(@doctor) %> |-->
+  <%#= link_to "Back to doctors", doctors_path %>
+
+  <%#= button_to "Destroy this doctor", @doctor, method: :delete %>
+<!--</div>-->

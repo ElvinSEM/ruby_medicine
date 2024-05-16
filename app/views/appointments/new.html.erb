@@ -1,0 +1,196 @@
+<!--<h1>New appointment</h1>-->
+
+<%#= render "form", appointment: @appointment %>
+
+<!--<br>-->
+
+<!--<div>-->
+  <%#= link_to "Back to appointments", appointments_path %>
+<!--</div>-->
+
+<!-- app/views/appointments/new.html.erb -->
+<!--<h1>Запись на прием</h1>-->
+
+<%#= form_with(model: @appointment, local: true) do |form| %>
+<!--  <div class="field">-->
+    <%#= form.label :date %>
+    <%#= form.date_field :date %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :time %>
+    <%#= form.time_field :time %>
+<!--  </div>-->
+
+<!--  <div class="field">-->
+    <%#= form.label :doctor_id %>
+    <%#= form.collection_select :doctor_id, Doctor.all, :id, :name %>
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+    <%#= form.submit "Записаться" %>
+<!--  </div>-->
+<%# end %>
+<%# if @appointment.errors.any? %>
+<!--  <div id="error_explanation">-->
+<!--    <h2><%#= pluralize(@appointment.errors.count, "error") %> prevented this appointment from being saved:</h2>-->
+<!--    <ul>-->
+      <%# @appointment.errors.full_messages.each do |message| %>
+<!--        <li><%#= message %></li>-->
+      <%# end %>
+<!--    </ul>-->
+<!--  </div>-->
+<%# end %>
+<%#= form_with model: @appointment, local: true do |form| %>
+<!--  <div>-->
+    <%#= form.label :appointment_date, "Дата и время приема" %>
+    <%#= form.datetime_select :appointment_date %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.label :doctor_id, "Врач" %>
+    <%#= form.collection_select :doctor_id, Doctor.all, :id, :name %>
+<!--  </div>-->
+
+<!--  div>-->
+  <%#= form.label :patient_id, "Пациент" %>
+  <%#= form.collection_select :patient_id, Patient.all, :id, :name %>
+
+
+<!--  <div>-->
+    <%#= form.label :problem_description, "Описание проблемы" %>
+    <%#= form.text_area :problem_description %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.label :age, "Возраст" %>
+    <%#= form.number_field :age %>
+<!--  </div>-->
+
+  <%# if current_user.patient %>
+    <%#= form.hidden_field :patient_id, value: current_user.patient.id %>
+  <%# else %>
+    <%#= form.fields_for :patient do |patient_fields| %>
+      <%#= patient_fields.label :name, "Полное имя" %>
+      <%#= patient_fields.text_field :name %>
+
+      <!-- Другие поля для профиля пациента -->
+    <%# end %>
+  <%# end %>
+
+
+  <%#= form.submit "Записаться на прием" %>
+<%# end %>
+
+
+<%#= form_with model: @appointment, local: true do |form| %>
+<!--  <div>-->
+    <%#= form.label :appointment_date, "Дата и время приема" %>
+    <%#= form.datetime_select :appointment_date %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.label :doctor_id, "Врач" %>
+    <%#= form.collection_select :doctor_id, Doctor.all, :id, :name %>
+<!--  </div>-->
+
+  <%# if current_user.patient %>
+    <%#= form.hidden_field :patient_id, value: current_user.patient.id %>
+  <%# else %>
+<!--     Показать сообщение о необходимости создать профиль пациента -->
+<!--    <p>Пожалуйста, создайте профиль пациента в вашем аккаунте перед записью на прием.</p>-->
+  <%# end %>
+
+<!--  <div>-->-->
+    <%#= form.label :problem_description, "Описание проблемы" %>
+    <%#= form.text_area :problem_description %>
+<!--  </div>-->
+
+<!--  <div>-->
+    <%#= form.label :age, "Возраст" %>
+    <%#= form.number_field :age %>
+<!--  </div>-->
+
+  <%#= form.submit "Записаться на прием" %>
+<%# end %>
+<%# if flash[:alert] %>
+<!--  <div class="alert">-->
+    <%#= flash[:alert] %>
+<!--  </div>-->
+<%# end %>
+
+
+
+<%# if @user && @user.errors.any? %>
+<!--  <div id="error_explanation">-->
+<!--    <h2><%#= pluralize(@user.errors.count, "error") %> prevented this user from being saved:</h2>-->
+<!--    <ul>-->
+      <%# @user.errors.full_messages.each do |message| %>
+<!--        <li><%#= message %></li>-->
+      <%# end %>
+<!--    </ul>-->
+<!--  </div>-->
+<%# end %>
+
+<%# if @appointment && @appointment.errors.any? %>
+<!--  <div id="error_explanation">-->
+<!--    <h2><%#= pluralize(@appointment.errors.count, "error") %> prevented this appointment from being saved:</h2>-->
+<!--    <ul>-->
+      <%# @appointment.errors.full_messages.each do |message| %>
+<!--        <li><%#= message %></li>-->
+      <%# end %>
+<!--    </ul>-->
+<!--  </div>-->
+<%# end %>
+
+<%# if @user.errors[:email].any? %>
+<!--  <div class="error_message">-->
+    <%# @user.errors[:email].each do |message| %>
+<!--      <p>Email <%#= message %>.</p>-->
+    <%# end %>
+<!--  </div>-->
+<%# end %>
+
+<%# if @user.errors[:email].any? %>
+<!--  <div class="error_message">-->
+<!--    <p>Email has already been taken. Did you <a href="<%#= new_user_session_path %>">sign in</a> or <a href="<%#= new_user_password_path %>">forget your password</a>?</p>-->
+<!--  </div>-->
+<%# end %>
+
+<%= form_with model: @appointment, local: true do |form| %>
+  <%#= form.text_field :phone, placeholder: "Phone Number" %>
+  <%= form.datetime_select :appointment_date %>
+  <%= form.collection_select :doctor_id, Doctor.all, :id, :name, prompt: "Select Doctor" %>
+  <%= form.text_field :age, placeholder: "Ваш возраст" %>
+  <%= form.select :problem_id, options_for_select([["Проблема или заболевание", 0], ["Постоянно устают глаза", 1], ["Близорукость", 2], ["Дальнозоркость", 3], ["Глаукома", 4], ["Катаракта", 5], ["Конъюнктивит", 6], ["Другое", 7]]) %>
+  <%= form.text_area :info, placeholder: "Доп. информация" %>
+
+  <%= form.submit "Register and Book Appointment" %>
+<% end %>
+
+
+
+<%#= form_with(model: [@appointment], url: appointments_path, local: true) do |form| %>
+  <%#= form.text_field :name, placeholder: "Фамилия Имя Отчество" %>
+  <%#= form.text_field :phone, placeholder: "Телефон" %>
+  <%#= form.text_field :email, placeholder: "E-mail" %>
+  <%#= form.datetime_select :appointment_date %>
+  <%#= form.collection_select :doctor_id, Doctor.all, :id, :name, prompt: "Выберите врача" %>
+  <%#= form.text_field :age, placeholder: "Ваш возраст" %>
+  <%#= form.select :problem_id, options_for_select([["Проблема или заболевание", 0], ["Постоянно устают глаза", 1], ["Близорукость", 2], ["Дальнозоркость", 3], ["Глаукома", 4], ["Катаракта", 5], ["Конъюнктивит", 6], ["Другое", 7]]) %>
+  <%#= form.text_area :info, placeholder: "Доп. информация", style: "height:150px" %>
+
+  <%# if @user.new_record? %>
+<!--     Поля для регистрации нового пользователя-->
+    <%#= render 'users/fields', f: form %>
+  <%# else %>
+<!--     Поля для существующего пользователя-->
+    <%#= form.hidden_field :user_id, value: @user.id %>
+  <%# end %>
+
+  <%# Добавляем поля для параметров пациента %>
+  <%#= render 'patients/fields', f: form %>
+
+  <%#= form.submit "Отправить", class: "btn-default btn2 col-xs-12", id: "bronsubmit" %>
+<%# end %>
+

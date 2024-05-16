@@ -1,0 +1,32 @@
+
+<%= form_with model: doctor, local: true do |form| %>
+  <% if doctor.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>
+      <ul>
+        <% doctor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :specialty %>
+    <%= form.text_field :specialty %>
+  </div>
+
+  <div>
+    <%= form.label :phone %>
+    <%= form.telephone_field :phone %>
+  </div>
+
+  <div>
+    <%= form.submit doctor.new_record? ? "Добавить" : "Обновить" %>
+  </div>
+<% end %>
