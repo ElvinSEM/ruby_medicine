@@ -1,40 +1,66 @@
-<!-- app/views/home/index.html.erb -->
 <h1>Добро пожаловать в офтальмологическую клинику "Видение"!</h1>
-<p>Мы предоставляем полный спектр офтальмологических услуг для всей семьи.</p>
+<h3>Наши услуги</h3>
 
-<% if user_signed_in? %>
-  <p>Привет, <%= current_user.email %>!</p>
-  <%= link_to 'Выйти', destroy_user_session_path, data: { turbo_method: :delete } %><% else %>
-  <%= link_to 'Войти', new_user_session_path%>
-  <%= link_to 'Зарегистрироваться', new_user_registration_path  %>
-<% end %>
-
-<!-- Пример раздела с услугами -->
-<section id="services">
-  <h2>Наши услуги</h2>
-  <ul>
-    <li>Диагностика зрения</li>
-    <li>Лечение заболеваний глаз</li>
-    <li>Операции на глаза</li>
-    <li>Коррекция зрения</li>
-  </ul>
-</section>
-
-<!-- Пример раздела с врачами -->
+<div class="container mt-sm-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <% @services.each do |service| %>
+      <div class="col">
+        <div class="card h-100">
+          <% if service.image.attached? %>
+            <%= image_tag service.image, class: "card-img-top" %>
+          <%# else %>
+<!--            <img src="placeholder-image-path.jpg" class="card-img-top" alt="...">-->
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= link_to service.name, service_path(service), class: 'stretched-link' %>
+            </h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<!-- Пример раздела с врачами-->
 <section id="doctors">
-  <h2>Наши врачи</h2>
-  <p>В нашей клинике работают высококвалифицированные врачи-офтальмологи.</p>
-  <!-- Здесь можно добавить информацию о врачах -->
+    <h2>Наши врачи</h2>
+    <p>В нашей клинике работают высококвалифицированные врачи-офтальмологи.</p>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% @doctors.each do |doctor| %>
+        <div class="col">
+          <div class="card h-100">
+            <% if doctor.image.attached? %>
+              <%= image_tag doctor.image, class: "card-img-top", alt: doctor.name %>
+            <% end %>
+
+            <div class="card-body">
+              <h5 class="card-title"><%= doctor.name %></h5>
+              <p class="card-text"><%= doctor.specialty %></p>
+            </div>
+
+            <div class="card-footer">
+              <small class="text-body-secondary">Последнее обновление: <%= doctor.updated_at.strftime("%d %b, %Y") %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+
+  </section>
+
 </section>
 
-<!-- Пример раздела с отзывами -->
+<!-- Пример раздела с отзывами-->
 <section id="testimonials">
   <h2>Отзывы пациентов</h2>
   <p>Читайте отзывы наших пациентов о качестве предоставляемых услуг.</p>
-  <!-- Здесь можно добавить отзывы пациентов -->
+  <%= render partial: 'reviews/review', collection: @reviews, as: :review %>
 </section>
 
-<!-- Пример раздела с контактной информацией -->
+ Пример раздела с контактной информацией
 <section id="contact">
   <h2>Контактная информация</h2>
   <address>
@@ -43,73 +69,3 @@
     <strong>Email:</strong> <a href="mailto:info@visionclinic.ru">info@visionclinic.ru</a>
   </address>
 </section>
-<!-- app/views/home/index.html.erb -->
-<!--<head>-->
-<!--  <title>Офтальмологическая клиника</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<header>-->
-<!--  <h1>Добро пожаловать в Офтальмологическую клинику</h1>-->
-<!--  <nav>-->
-<!--    <ul>-->
-<!--      <li><%#= link_to 'Главная', root_path %></li>-->
-<!--      <li><%#= link_to 'Врачи', doctors_path %></li>-->
-<!--      <li><%#= link_to 'Услуги', "#" %></li>-->
-<!--      <li><%#= link_to 'Статьи', "#" %></li>-->
-<!--      <li><%#= link_to 'Акции', "#" %></li>-->
-<!--      <li><%#= link_to 'Отзывы', "#" %></li>-->
-      <%# if "current_user" %>
-<!--        <li><%#= link_to 'Мой профиль', "#" %></li>-->
-<!--        <li><%#= link_to 'Выход', "#", method: :delete %></li>-->
-      <%# else %>
-<!--        <li><%#= link_to 'Вход', "#" %></li>-->
-<!--        <li><%#= link_to 'Регистрация', "#" %></li>-->
-      <%# end %>
-<!--    </ul>-->
-<!--  </nav>-->
-<!--</header>-->
-
-<!--<main>-->
-<!--  <section>-->
-<!--    <h2>О нашей клинике</h2>-->
-<!--    <p>Здесь будет информация о клинике, ее истории, миссии и ценностях.</p>-->
-<!--  </section>-->
-
-<!--  <section>-->
-<!--    <h2>Наши услуги</h2>-->
-<!--    <p>Краткое описание предоставляемых услуг с ссылками на подробные страницы каждой услуги.</p>-->
-<!--  </section>-->
-
-<!--  <section>-->
-<!--    <h2>Запись на прием</h2>-->
-<!--    <p>Информация о том, как записаться на прием и ссылка на форму записи.</p>-->
-    <%#= link_to 'Записаться на прием', new_appointment_path, class: 'button' %>
-<!--  </section>-->
-
-<!--  <section>-->
-<!--    <h2>Последние статьи</h2>-->
-    <%# "@articles".limit(3).each do |article| %>
-<!--      <article>-->
-<!--        <h3><%#= link_to article.title, article %></h3>-->
-<!--        <p><%#= truncate(article.content, length: 200) %></p>-->
-<!--      </article>-->
-    <%# end %>
-    <%#= link_to 'Все статьи', "#" %>
-<!--  </section>-->
-
-<!--  <section>-->
-<!--    <h2>Текущие акции</h2>-->
-    <%# "@promotions".limit(3).each do |promotion| %>
-<!--      <article>-->
-<!--        <h3><%#= link_to promotion.title, promotion %></h3>-->
-<!--        <p><%#= truncate(promotion.description, length: 200) %></p>-->
-<!--      </article>-->
-    <%# end %>
-    <%#= link_to 'Все акции', "#" %>
-<!--  </section>-->
-<!--</main>-->
-
-<!--<footer>-->
-<!--  <p>© Офтальмологическая клиника, <%#= Time.current.year %></p>-->
-<!--</footer>-->
-<!--</body>-->

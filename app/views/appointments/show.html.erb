@@ -1,20 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @appointment %>
+<p>
+  <strong>Дата приема:</strong> <%= @appointment.start_time.strftime("%Y-%m-%d %H:%M") %>
+</p>
+<p>
+  <strong>Врач:</strong> <%= @appointment.doctor.name %>
+</p>
+<!--<p>-->
+<!--  <strong>Описание проблемы:</strong> <%#= @appointment.problem_id %>-->
+<!--</p>-->
+<p>
+  <strong>Описание проблемы:</strong> <%= Appointment::PROBLEMS[@appointment.problem_id] %>
+</p>
 
-<!--<div>-->
-<!--  <%#= link_to "Edit this appointment", edit_appointment_path(@appointment) %> |-->
-  <%#= link_to "Back to appointments", appointments_path %>
 
-  <%#= button_to "Destroy this appointment", @appointment, method: :delete %>
-<!--</div>-->
+<p>
+  <strong>Возраст:</strong> <%= @appointment.age %>
+</p>
+<p>
+  <strong>Доп. информация:</strong> <%= @appointment.info %>
+</p>
 
-
-<!-- app/views/appointments/show.html.erb-->
-<p>Дата приема: <%= @appointment.appointment_date %></p>
-<p>Врач: <%= @appointment.doctor.name %></p>
-<p>Описание проблемы: <%= @appointment.problem_description %></p>
- Дополнительные детали записи на прием
-
-<%= link_to 'Edit', edit_appointment_path(@appointment) %> |
+<%= link_to 'Edit', edit_appointment_path(@appointment) %>
 <%= link_to 'Back to List', appointments_path %>
+<%= button_to "Destroy this doctor", @appointment, method: :delete %>

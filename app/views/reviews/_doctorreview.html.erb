@@ -1,0 +1,6 @@
+<% if review.doctor %>
+  <li class="list-group-item">
+    <h5> Отзыв для <%= link_to review.doctor.name, doctor_path(review.doctor) %></h5>
+  </li>
+
+<% end %>
