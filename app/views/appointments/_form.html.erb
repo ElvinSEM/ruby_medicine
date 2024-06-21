@@ -1,32 +1,87 @@
+<%#= form_with(model: @appointment) do |form| %>
+  <%# if @appointment.errors.any? %>
+<!--    <div style="color: red">-->
+<!--      <h2><%#= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>-->
+
+<!--      <ul>-->
+        <%# @appointment.errors.each do |error| %>
+<!--          <li><%#= error.full_message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
+
+
+  <%#= form.label :status, "Status", style: "display: block" %>
+  <%#= form.text_field :status %>
+<!--  <div>-->
+    <%#= form.label :doctor, style: "display: block" %>
+    <%#= form.collection_select :doctor_id, @doctors, :id, :name, prompt: 'Выберите врача' %>
+<!--  </div>-->
+
+<!--  <div class="actions">-->
+    <%#= form.submit %>
+<!--  </div>-->
+<%# end %>
 <%= form_with(model: @appointment) do |form| %>
-  <% if @appointment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+  <%# if @appointment.errors.any? %>
+<!--    <div style="color: red">-->
+<!--      <h2><%#= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>-->
+<!--      <ul>-->
+        <%# @appointment.errors.each do |error| %>
+<!--          <li><%#= error.full_message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
 
-      <ul>
-        <% @appointment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div>
-    <%= form.label :appointment_date, style: "display: block" %>
-    <%= form.datetime_field :appointment_date %>
+  <%# if @appointment.errors.any? %>
+<!--    <div style="color: red">-->
+<!--      <h2><%#= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>-->
+
+<!--      <ul>-->
+        <%# @appointment.errors.full_messages.each do |message| %>
+<!--          <li><%#= message %></li>-->
+        <%# end %>
+<!--      </ul>-->
+<!--    </div>-->
+  <%# end %>
+
+  <div class="field">
+    <%= form.label :age, "Ваш возраст" %>
+    <%= form.text_field :age, placeholder: "Ваш возраст", id: "appointment_age" %>
   </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+  <div class="field">
+    <%= form.label :problem_id, "Проблема или заболевание" %>
+    <%= form.select :problem_id, Appointment::PROBLEMS.map { |k, v| [v, k] }, id: "appointment_problem_id" %>
   </div>
 
-  <div>
-    <%= form.label :doctor_id, style: "display: block" %>
-    <%= form.text_field :doctor_id %>
+  <div class="field">
+    <%= form.label :info, "Доп. информация" %>
+    <%= form.text_area :info, placeholder: "Доп. информация", id: "appointment_info" %>
   </div>
 
+  <div class="field">
+    <%= form.label :start_time, "Выберите дату и время" %>
+    <%= form.datetime_select :start_time,
+                             start_year: Date.today.year,
+                             end_year: Date.today.year,
+                             minute_step: 30,
+                             default: { hour: 8 } %>
+  </div>
+
+  <%= form.label :status, "Status", style: "display: block" %>
+  <%= form.text_field :status, id: "appointment_status" %>
+
   <div>
+    <%= form.label :doctor, style: "display: block" %>
+    <%#= @doctors.nil? ? 'Doctors not loaded' : 'Doctors' %>
+    <%= form.collection_select :doctor_id, @doctors, :id, :name, prompt: 'Выберите врача', id: "appointment_doctor_id"  if @doctors %>
+  </div>
+
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

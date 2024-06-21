@@ -1,0 +1,7 @@
+<%= link_to 'New Review', new_review_path %>
+
+<% @reviews.each do |review| %>
+  <%= render partial: 'review', locals: { review: review } %>
+  <%= render partial: 'doctorreview', locals: { review: review } %>
+  <%= link_to 'Delete Review', review_path(review), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

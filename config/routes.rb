@@ -4,8 +4,14 @@ Rails.application.routes.draw do
 
   root 'home#index'
   resources :appointments
-  resources :patients
-  resources :doctors
+  # resources :patients
+  resources :doctors do
+    resources :reviews, only: [:index, :new, :create, :destroy]
+  end
+
+  resources :services
+  resources :reviews
+
 end
 
 # resources :main, only: [:index, :show]

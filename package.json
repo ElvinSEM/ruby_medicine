@@ -1,11 +1,28 @@
 {
-  "name": "HospitalApp",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://ElvinSEM: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@github.com/ElvinSEM/ruby_medicine.git",
-  "author": "ElvinSEM <elvin.seytibramov@gmail.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "esbuild": "^0.19.9"
-  }
+  "name": "app",
+  "private": "true",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.4",
+    "@popperjs/core": "^2.11.8",
+    "autoprefixer": "^10.4.16",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.2",
+    "esbuild": "^0.21.4",
+    "nodemon": "^3.0.2",
+    "postcss": "^8.4.32",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.69.5"
+  },
+  "packageManager": "yarn@1.22.22",
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
+    "build:css:compile": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
+    "build:css": "yarn run build:css:compile && yarn run build:css:prefix",
+    "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn run build:css\""
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }

@@ -1,48 +1,40 @@
-<h1><%= @doctor.name %></h1>
+<div class="container">
+  <div class="row">
+    <!-- Колонка для изображения -->
+    <div class="col-md-4">
+      <h1><%= @doctor.name %></h1>
+      <% if @doctor.image.attached? %>
+        <%= image_tag @doctor.image, alt: @doctor.name, class: 'img-fluid' %>
+      <% end %>
+    </div>
 
-<p><strong>Специальность:</strong> <%= @doctor.specialty %></p>
-<p><strong>Телефон:</strong> <%= @doctor.phone %></p>
+    <!-- Колонка для описания -->
+    <div class="col-md-8">
+      <p><strong>Специальность:</strong> <%= @doctor.specialty %></p>
+      <p><strong>Телефон:</strong> <%= @doctor.phone %></p>
+      <p><strong>Опыт работы</strong> <%= @doctor.description %></p>
 
-<%= link_to 'Редактировать', edit_doctor_path(@doctor) %> |
-<%= link_to 'Назад к списку', doctors_path %>
+      <div>
 
+      <%= link_to 'Редактировать', edit_doctor_path(@doctor) %> |
+      <%= link_to 'Назад к списку', doctors_path %>
+    </div>
+  </div>
+</div>
 
-<!--<p style="color: green"><%#= notice %></p>-->
+<p style="color: green"><%= notice %></p>
 
-<%#= render @doctor %>
+<%= render @doctor %>
 
-<!--<div>-->
-<!--  <%#= link_to "Edit this doctor", edit_doctor_path(@doctor) %> |-->
-  <%#= link_to "Back to doctors", doctors_path %>
+<h2> Текущие отзывы: </h2>
+<% @doctor.reviews.each do |review| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title"><%= review.name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= review.created_at.strftime("%d/%m/%Y, %H:%M") %></h6>
+      <p class="card-text"><%= review.body %></p>
+    </div>
+  </div>
+<% end %>
 
-  <%#= button_to "Destroy this doctor", @doctor, method: :delete %>
-<!--</div>-->
-
-
-
-<!--<h1><%#= @doctor.name %></h1>-->
-
-<!--<p><strong>Специальность:</strong> <%#= @doctor.specialty %></p>-->
-<!--<p><strong>Телефон:</strong> <%#= @doctor.phone %></p>-->
-
-<!--<%#= link_to 'Редактировать', edit_doctor_path(@doctor), class: 'btn btn-warning' %> |-->
-<%#= link_to 'Назад к списку', doctors_path, class: 'btn btn-secondary' %>
-
-
-
-
-<!--<p style="color: green"><%#= notice %></p>-->
-
-<%#= render @doctor %>
-<!--<h2><%#= @doctor.name %>'s Information</h2>-->
-
-<!--<p><%#= link_to 'Schedule', doctor_schedules_path(@doctor) %></p>-->
-
-<%#= render 'schedules/table', schedules: @schedule || []%>
-<%#= render 'appointment', appointments: @appointments || []%>
-<!--<div>-->
-<!--  <%#= link_to "Edit this doctor", edit_doctor_path(@doctor) %> |-->
-  <%#= link_to "Back to doctors", doctors_path %>
-
-  <%#= button_to "Destroy this doctor", @doctor, method: :delete %>
-<!--</div>-->
+<%= button_to "Destroy this doctor", @doctor, method: :delete %>

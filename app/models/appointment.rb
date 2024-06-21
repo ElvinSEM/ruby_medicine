@@ -1,5 +1,4 @@
 class Appointment < ApplicationRecord
-  attr_accessor :problem_description
   PROBLEMS = {
     0 => "Проблема или заболевание",
     1 => "Постоянно устают глаза",
@@ -11,26 +10,15 @@ class Appointment < ApplicationRecord
     8 => "Другое",
   }.freeze
 
-  def problem_description
-    PROBLEMS[problem_id]
-  end
-
-
   belongs_to :doctor
-  # belongs_to :patient
   belongs_to :user
-  #
-  # validates :appointment_date, presence: true
-  validates :status, presence: true
-  # Установка значения по умолчанию для статуса, если это необходимо
-  before_validation :set_default_status, on: :create
 
-  private
+  validates :start_time, presence: true
+  validate :time_slot_available
 
-  def set_default_status
-    self.status ||= 'запланировано'
+  def time_slot_available
+    if Appointment.exists?(doctor_id: doctor_id, start_time: start_time)
+      errors.add(:start_time, "Выбранное время уже занято")
+    end
   end
 end
-
-#Принадлежит врачу (doctor).
-# Принадлежит пациенту (patient).
