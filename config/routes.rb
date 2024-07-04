@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  # Маршруты Devise для обычных пользователей
   devise_for :users
-  # resources :users
 
   root 'home#index'
   resources :appointments
@@ -11,23 +12,11 @@ Rails.application.routes.draw do
 
   resources :services
   resources :reviews
+  # Если вам нужно добавить маршруты для административной панели, используйте пространство имен:
+  # namespace :admin do
+  #   resources :users
+  #   # Добавьте другие ресурсы или маршруты, специфичные для вашей административной панели
+  # end
 
 end
 
-# resources :main, only: [:index, :show]
-# # Ресурсы для пациентов
-# resources :patients do
-#   resources :appointments # вложенные ресурсы для записей на прием
-# end
-#
-# # Ресурсы для врачей
-# resources :doctors do
-#   resources :appointments # вложенные ресурсы для записей на прием
-# end
-#
-# # Ресурсы для записей на прием
-# resources :appointments
-#
-# # Можно добавить дополнительные маршруты для специфических страниц или действий
-# # get 'special_page', to: 'controller#action'
-#

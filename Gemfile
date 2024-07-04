@@ -13,6 +13,7 @@ gem "cssbundling-rails"
 gem "jbuilder"
 gem "mysql2"
 gem "puma"
+gem 'pundit'
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem 'sassc-rails'

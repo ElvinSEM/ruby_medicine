@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "HospitalApp",
   "private": "true",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",

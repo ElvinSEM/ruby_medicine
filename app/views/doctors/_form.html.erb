@@ -1,34 +1,28 @@
-
-<%= form_with model: doctor, local: true do |form| %>
+<%= form_with(model: doctor, local: true) do |form| %>
   <% if doctor.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation">
       <h2><%= pluralize(doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>
       <ul>
-        <% doctor.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% doctor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
-  <div>
+  <div class="field">
     <%= form.label :specialty %>
     <%= form.text_field :specialty %>
   </div>
 
-  <div>
-    <%= form.label :phone %>
-    <%= form.telephone_field :phone %>
-  </div>
-
   <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
   </div>
 
   <div class="field">
@@ -36,7 +30,12 @@
     <%= form.text_area :description %>
   </div>
 
-  <div>
-    <%= form.submit doctor.new_record? ? "Добавить" : "Обновить" %>
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
   </div>
 <% end %>

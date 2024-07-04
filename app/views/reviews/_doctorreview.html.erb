@@ -1,6 +1,10 @@
-<% if review.doctor %>
-  <li class="list-group-item">
-    <h5> Отзыв для <%= link_to review.doctor.name, doctor_path(review.doctor) %></h5>
-  </li>
+<%# if review.doctor %>
+<!--  <li class="list-group-item">-->
+<!--    <h5> Отзыв для <%#= link_to review.doctor.name, doctor_path(review.doctor) %></h5>-->
+<!--  </li>-->
 
-<% end %>
+<%# end %>
+
+
+<!-- app/views/reviews/_doctorreview.html.erb -->
+<%= render partial: 'review', locals: { review: review } %>

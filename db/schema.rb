@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_09_080446) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_25_055210) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -68,10 +68,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_09_080446) do
   create_table "reviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.text "body"
+    t.bigint "doctor_id"
+    t.bigint "user_id", null: false
+    t.boolean "site_review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "doctor_id"
     t.index ["doctor_id"], name: "index_reviews_on_doctor_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -90,6 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_09_080446) do
     t.string "encrypted_password"
     t.datetime "remember_created_at"
     t.string "phone"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
@@ -98,4 +102,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_09_080446) do
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "users"
   add_foreign_key "reviews", "doctors"
+  add_foreign_key "reviews", "users"
 end
