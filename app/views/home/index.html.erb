@@ -8,8 +8,8 @@
         <div class="card h-100">
           <% if service.image.attached? %>
             <%= image_tag service.image, class: "card-img-top" %>
-          <%# else %>
-<!--            <img src="placeholder-image-path.jpg" class="card-img-top" alt="...">-->
+          <% else %>
+            <p>No image attached</p>
           <% end %>
           <div class="card-body">
             <h5 class="card-title">
@@ -46,11 +46,6 @@
         </div>
       <% end %>
     </div>
-
-
-
-  </section>
-
 </section>
 
 <!-- Пример раздела с отзывами-->

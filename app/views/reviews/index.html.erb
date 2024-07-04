@@ -1,7 +1,10 @@
-<%= link_to 'New Review', new_review_path %>
+<!-- app/views/reviews/index.html.erb -->
+<h1>Отзывы</h1>
 
-<% @reviews.each do |review| %>
-  <%= render partial: 'review', locals: { review: review } %>
-  <%= render partial: 'doctorreview', locals: { review: review } %>
-  <%= link_to 'Delete Review', review_path(review), method: :delete, data: { confirm: 'Are you sure?' } %>
-<% end %>
+<ul class="list-group">
+  <% @reviews.each do |review| %>
+    <%= render partial: 'review', locals: { review: review } %>
+  <% end %>
+</ul>
+
+<%= link_to 'Создать новый отзыв', new_review_path, class: 'btn btn-success' if user_signed_in? %>
