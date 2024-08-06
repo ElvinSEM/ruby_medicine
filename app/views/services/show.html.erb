@@ -1,20 +1,69 @@
-<div class="container">
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-md-4">-->
+<!--      <h1><%#= @service.name %></h1>-->
+      <%# if @service.image.attached? %>
+        <%#= image_tag @service.image, alt: @service.name, class: 'img-fluid' %>
+      <%# end %>
+<!--    </div>-->
+<!--    <div class="col-md-8">-->
+<!--      <p><strong>Цена:</strong> <%#= number_to_currency(@service.price) %></p>-->
+<!--      <p><strong>Описание:</strong></p>-->
+<!--      <p><%#= @service.description %></p>-->
+      <%# if current_user.admin? %>
+        <%#= link_to 'Редактировать', edit_service_path(@service), class: 'btn btn-primary' %>
+        <%#= button_to 'Удалить', @service, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+      <%# end %>
+      <%#= link_to 'Назад к списку', services_path, class: 'btn btn-secondary' %>
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="container mt-4">
   <div class="row">
     <div class="col-md-4">
-      <h1><%= @service.name %></h1>
-      <% if @service.image.attached? %>
-        <%= image_tag @service.image, alt: @service.name, class: 'img-fluid' %>
-      <% end %>
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0"><%= @service.name %></h2>
+        </div>
+        <div class="card-body">
+          <% if @service.image.attached? %>
+            <%= image_tag @service.image, alt: @service.name, class: 'img-fluid mb-3' %>
+          <% end %>
+          <p><strong>Цена:</strong> <%= number_to_currency(@service.price) %></p>
+          <p><strong>Описание:</strong></p>
+          <p><%= @service.description %></p>
+          <% if current_user.admin? %>
+            <%= link_to 'Редактировать', edit_service_path(@service), class: 'btn btn-primary mr-2' %>
+            <%= button_to 'Удалить', @service, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+          <% end %>
+          <%= link_to 'Назад к списку', services_path, class: 'btn btn-secondary mt-3' %>
+        </div>
+      </div>
     </div>
     <div class="col-md-8">
-      <p><strong>Цена:</strong> <%= number_to_currency(@service.price) %></p>
-      <p><strong>Описание:</strong></p>
-      <p><%= @service.description %></p>
-      <% if current_user.admin? %>
-        <%= link_to 'Редактировать', edit_service_path(@service), class: 'btn btn-primary' %>
-        <%= button_to 'Удалить', @service, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
-      <% end %>
-      <%= link_to 'Назад к списку', services_path, class: 'btn btn-secondary' %>
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">Запишитесь</h2>
+        </div>
+        <div class="card-body">
+          <form action="/operatsii-na-vekah-i-konyunktive-glaza/#wpcf7-f745-p711-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+            <div class="form-group">
+              <label for="edit-submitted-vvedite-vashe-imya">Ваше ФИО</label>
+              <input type="text" name="text-766" class="form-control" id="edit-submitted-vvedite-vashe-imya" placeholder="Введите ваше ФИО" required>
+            </div>
+            <div class="form-group">
+              <label for="edit-submitted-telefon-p">Ваш телефон</label>
+              <input type="tel" name="tel-460" class="form-control" id="edit-submitted-telefon-p" placeholder="Введите ваш телефон" required>
+            </div>
+            <div class="form-check mb-3">
+              <input type="checkbox" name="acceptance-rules" class="form-check-input" id="acceptance-rules" checked>
+              <label class="form-check-label" for="acceptance-rules">Согласен на <a href="/soglasie-na-obrabotku-personalnyh-dannyh/" target="_blank">обработку персональных данных</a></label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

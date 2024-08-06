@@ -43,9 +43,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :configure_permitted_parameters, if: :devise_controller?
-
+  before_action :set_locale
   # Обработка исключений Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  def set_locale
+    if params[:locale]
+      I18n.locale = params[:locale]
+      session[:locale] = I18n.locale
+      redirect_back(fallback_location: root_path)
+    else
+      I18n.locale = session[:locale] || I18n.default_locale
+    end
+  end
 
   protected
 

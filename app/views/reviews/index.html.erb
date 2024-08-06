@@ -6,5 +6,8 @@
     <%= render partial: 'review', locals: { review: review } %>
   <% end %>
 </ul>
+<div id="show-more-container">
+  <%= link_to 'Показать все отзывы', show_all_reviews_path, class: 'btn btn-primary', id: 'show-more-button' %>
+</div>
 
 <%= link_to 'Создать новый отзыв', new_review_path, class: 'btn btn-success' if user_signed_in? %>

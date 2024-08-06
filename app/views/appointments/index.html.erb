@@ -1,7 +1,4 @@
-<!--<p style="color: green"><%#= notice %></p>-->
-
 <!--<h1>Appointments</h1>-->
-
 <!--<table>-->
 <!--  <thead>-->
 <!--  <tr>-->
@@ -10,49 +7,50 @@
 <!--    <th>Описание проблемы</th>-->
 <!--  </tr>-->
 <!--  </thead>-->
+
 <!--  <tbody>-->
   <%# @appointments.each do |appointment| %>
 <!--    <tr>-->
 <!--      <td><%#= appointment.doctor.name %></td>-->
 <!--      <td><%#= appointment.start_time.strftime("%Y-%m-%d %H:%M") %></td>-->
-<!--      <td><%#= appointment.status %></td>-->
 <!--      <td><%#= appointment.problem_description %></td>-->
 <!--      <td>-->
-        <%#= link_to "Show", appointment %>
-        <%#= link_to "Edit", edit_appointment_path(appointment) %>
-        <%#= link_to "Delete", appointment, method: :delete, data: { confirm: "Are you sure?" } %>
+        <%#= link_to "Показать", appointment %>
+        <%#= link_to "Изменить", edit_appointment_path(appointment) %>
 <!--      </td>-->
 <!--    </tr>-->
   <%# end %>
 <!--  </tbody>-->
 <!--</table>-->
 
-<!--<%#= link_to "New Appointment", new_appointment_path %>.-->
+<%#= link_to "Новый прием", new_appointment_path %>
 
-<h1>Appointments</h1>
 
-<table>
-  <thead>
+<h1 class="mb-4">Appointments</h1>
+<div class="mt-4">
+  <%= link_to "Новый прием", new_appointment_path, class: 'btn btn-primary' %>
+</div>
+<table class="table table-striped table-hover">
+  <thead class="thead-dark">
   <tr>
-    <th>Врач</th>
-    <th>Время приема</th>
-    <th>Описание проблемы</th>
+    <th scope="col">Врач</th>
+    <th scope="col">Время приема</th>
+    <th scope="col">Описание проблемы</th>
+    <th scope="col">Действия</th>
   </tr>
   </thead>
-
   <tbody>
   <% @appointments.each do |appointment| %>
     <tr>
       <td><%= appointment.doctor.name %></td>
-      <td><%= appointment.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-      <td><%= appointment.problem_description %></td>
+      <td><%= l appointment.start_time, format: :long %></td>
+      <td><%= appointment.problem_description%></td>
       <td>
-        <%= link_to "Показать", appointment %>
-        <%= link_to "Изменить", edit_appointment_path(appointment) %>
+        <%= link_to "Показать", appointment, class: 'btn btn-info btn-sm' %>
+        <%= link_to "Изменить", edit_appointment_path(appointment), class: 'btn btn-warning btn-sm' %>
       </td>
     </tr>
   <% end %>
   </tbody>
 </table>
 
-<%= link_to "Новый прием", new_appointment_path %>

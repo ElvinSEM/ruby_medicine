@@ -1,26 +1,31 @@
-<p style="color: green"><%= notice %></p>
+<div class="container mt-4">
+  <div class="alert alert-success" role="alert" style="color: green"><%= notice %></div>
 
-<p>
-  <strong>Дата приема:</strong> <%= @appointment.start_time.strftime("%Y-%m-%d %H:%M") %>
-</p>
-<p>
-  <strong>Врач:</strong> <%= @appointment.doctor.name %>
-</p>
-<!--<p>-->
-<!--  <strong>Описание проблемы:</strong> <%#= @appointment.problem_id %>-->
-<!--</p>-->
-<p>
-  <strong>Описание проблемы:</strong> <%= Appointment::PROBLEMS[@appointment.problem_id] %>
-</p>
-
-
-<p>
-  <strong>Возраст:</strong> <%= @appointment.age %>
-</p>
-<p>
-  <strong>Доп. информация:</strong> <%= @appointment.info %>
-</p>
-
-<%= link_to 'Edit', edit_appointment_path(@appointment) %>
-<%= link_to 'Back to List', appointments_path %>
-<%= button_to "Destroy this doctor", @appointment, method: :delete %>
+  <div class="card mb-4">
+    <div class="card-header">
+      <h4>Детали Приема</h4>
+    </div>
+    <div class="card-body">
+      <p>
+        <strong>Дата приема:</strong> <%= l @appointment.start_time, format: :long %>
+      </p>
+      <p>
+        <strong>Врач:</strong> <%= @appointment.doctor.name %>
+      </p>
+      <p>
+        <strong>Описание проблемы:</strong> <%= Appointment::PROBLEMS[@appointment.problem_id] %>
+      </p>
+      <p>
+        <strong>Возраст:</strong> <%= @appointment.age %>
+      </p>
+      <p>
+        <strong>Доп. информация:</strong> <%= @appointment.info %>
+      </p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Изменить', edit_appointment_path(@appointment), class: 'btn btn-warning' %>
+      <%= link_to 'Назад к списку', appointments_path, class: 'btn btn-secondary' %>
+      <%= button_to 'Удалить', @appointment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Вы уверены?' } %>
+    </div>
+  </div>
+</div>

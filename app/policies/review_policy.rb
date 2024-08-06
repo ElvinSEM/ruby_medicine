@@ -16,4 +16,7 @@ class ReviewPolicy < ApplicationPolicy
   def destroy?
     user.present? && user.admin?
   end
+  def show_all?
+    true # Разрешить всем пользователям просмотр всех отзывов
+  end
 end

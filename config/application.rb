@@ -10,7 +10,10 @@ module HospitalApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
+    config.i18n.available_locales = %i[en ru]
+    config.i18n.default_locale = :ru
+    config.i18n.fallbacks = [:en]
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

@@ -12,34 +12,3 @@
 <% end %>
 
 <%= render "form", appointment: @appointment %>
-  <%#= form.text_field :age, placeholder: "Ваш возраст" %>
-  <%#= form.select :problem_id, options_for_select([["Проблема или заболевание", 0], ["Постоянно устают глаза", 1], ["Близорукость", 2], ["Дальнозоркость", 3], ["Глаукома", 4], ["Катаракта", 5], ["Конъюнктивит", 6], ["Другое", 7]]) %>
-  <%#= form.text_area :info, placeholder: "Доп. информация" %>
-<%#= form_with(model: @appointment, local: true) do |form| %>
-  <%# if @appointment.errors.any? %>
-<!--    <div id="error_explanation">-->
-<!--      <h2><%#= pluralize(@appointment.errors.count, "ошибка") %> запрещена сохранению этой записи:</h2>-->
-<!--      <ul>-->
-        <%# @appointment.errors.full_messages.each do |message| %>
-<!--          <li><%#= message %></li>-->
-        <%# end %>
-<!--      </ul>-->
-<!--    </div>-->
-  <%# end %>
-
-<!--  <div class="field">-->
-    <%#= form.label :doctor_id, "Выберите врача" %>
-    <%#= form.collection_select :doctor_id, @doctors, :id, :name, prompt: "Выберите врача", include_blank: true, onchange: "this.form.submit()" %>
-<!--  </div>-->
-
-
-  <%#= form.text_field :age, placeholder: "Ваш возраст" %>
-  <%#= form.select :problem_id, options_for_select([["Проблема или заболевание", 0], ["Постоянно устают глаза", 1], ["Близорукость", 2], ["Дальнозоркость", 3], ["Глаукома", 4], ["Катаракта", 5], ["Конъюнктивит", 6], ["Другое", 7]]) %>
-  <%#= form.text_area :info, placeholder: "Доп. информация" %>
-
-
-<!--  <div class="actions">-->
-    <%#= form.submit "Записаться" %>
-<!--  </div>-->
-<%# end %>
-

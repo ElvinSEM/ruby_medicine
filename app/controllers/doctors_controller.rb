@@ -39,7 +39,7 @@ class DoctorsController < ApplicationController
     authorize @doctor # Проверяем авторизацию для создания нового доктора
 
     if @doctor.save
-      redirect_to @doctor, notice: "Doctor was successfully created."
+      redirect_to @doctor, notice: t('flash.notice.doctor.created')
     else
       render :new, status: :unprocessable_entity
     end
@@ -48,7 +48,7 @@ class DoctorsController < ApplicationController
   # PATCH/PUT /doctors/1
   def update
     if @doctor.update(doctor_params)
-      redirect_to @doctor, notice: "Doctor was successfully updated.", status: :see_other
+      redirect_to @doctor, notice: t('flash.notice.doctor.updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -58,7 +58,7 @@ class DoctorsController < ApplicationController
   def destroy
     @doctor = Doctor.find(params[:id])
     @doctor.destroy
-    redirect_to doctors_url, notice: 'Врач успешно удалён.'
+    redirect_to doctors_url, notice: t('flash.notice.doctor.destroyed')
   end
 
   private

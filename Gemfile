@@ -7,17 +7,21 @@ gem "rails", "~> 7.0.8"
 gem 'bcrypt'
 gem "bootsnap", require: false
 gem 'devise'
-gem 'dotenv-rails'
+gem 'dotenv-rails',groups: [:development, :test]
 gem "jsbundling-rails"
 gem "cssbundling-rails"
 gem "jbuilder"
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 gem "mysql2"
 gem "puma"
 gem 'pundit'
+gem 'rails-i18n'
 gem "sprockets-rails"
 gem "stimulus-rails"
 gem 'sassc-rails'
-#gem "turbo-rails"
+gem "turbo-rails"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -27,6 +31,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
+  gem 'rubocop'
 end
 
 group :development do

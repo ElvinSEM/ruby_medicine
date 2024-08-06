@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   # devise_for :admin_users, ActiveAdmin::Devise.config
   # Маршруты Devise для обычных пользователей
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   root 'home#index'
   resources :appointments
@@ -9,14 +12,14 @@ Rails.application.routes.draw do
   resources :doctors do
     resources :reviews, only: [:index, :new, :create, :destroy]
   end
+  get '/set_locale/:locale', to: 'application#set_locale', as: :set_locale
+  get 'search', to: 'pages#search', as: 'search'
 
   resources :services
-  resources :reviews
-  # Если вам нужно добавить маршруты для административной панели, используйте пространство имен:
-  # namespace :admin do
-  #   resources :users
-  #   # Добавьте другие ресурсы или маршруты, специфичные для вашей административной панели
-  # end
-
+  resources :reviews, only: [:index, :show, :new, :create, :destroy] do
+    collection do
+      get 'show_all'
+    end
+  end
 end
 

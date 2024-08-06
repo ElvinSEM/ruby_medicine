@@ -11,25 +11,28 @@ class AppointmentsController < ApplicationController
   def show
     @appointment = Appointment.find(params[:id])
   end
+
   def new
     @appointment = Appointment.new
     @doctors = Doctor.all
   end
 
-
   def edit
     @appointment = Appointment.find(params[:id])
     @doctors = Doctor.all
-
   end
+
   def create
       @appointment = current_user.appointments.build(appointment_params)
       if @appointment.save
         redirect_to @appointment, notice: 'Запись на прием успешно создана.'
       else
-        @doctors = Doctor.all
-        # flash[:alert] = 'Выбранное время уже занято'
-        render :new
+        msg = 'Выбранное время уже занято'
+        #@doctors = Doctor.all
+        #flash[:alert] = msg
+        #render :new
+
+        render turbo_stream: turbo_stream.append(:notices, partial: 'notices/notice', locals: { notices: msg, key: 'danger' })
       end
   end
 

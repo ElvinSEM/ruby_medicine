@@ -1,32 +1,84 @@
-<div class="container">
+<!--<div class="container">-->
+<!--  <div class="row">-->
+    <!-- Колонка для изображения -->
+<!--    <div class="col-md-4">-->
+<!--      <h1><%#= @doctor.name %></h1>-->
+      <%# if @doctor.image.attached? %>
+        <%#= image_tag @doctor.image, alt: @doctor.name, class: 'img-fluid' %>
+      <%# end %>
+<!--    </div>-->
+
+    <!-- Колонка для описания -->
+<!--    <div class="col-md-8">-->
+<!--      <p><strong>Специальность:</strong> <%#= @doctor.specialty %></p>-->
+<!--      <p><strong>Телефон:</strong> <%#= @doctor.phone %></p>-->
+<!--      <p><strong>Опыт работы:</strong> <%#= @doctor.description %></p>-->
+
+<!--      <div>-->
+        <%# if current_user.admin? || current_user == @doctor %>
+          <%#= link_to 'Редактировать', edit_doctor_path(@doctor), class: 'btn btn-primary' %>
+          <%#= button_to 'Удалить', @doctor, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        <%# end %>
+        <%#= link_to 'Назад к списку', doctors_path, class: 'btn btn-secondary' %>
+<!--      </div>-->
+<!--    </div>-->
+  </div> <!-- Закрытие блока row -->
+
+<!--  <p style="color: green"><%#= notice %></p>-->
+
+<!--  <h2>Текущие отзывы:</h2>-->
+  <%# @doctor.reviews.each do |review| %>
+<!--    <div class="card mb-4">-->
+<!--      <div class="card-body">-->
+<!--        <h5 class="card-title"><%#= review.name %></h5>-->
+<!--        <h6 class="card-subtitle mb-2 text-muted"><%#= review.created_at.strftime("%d/%m/%Y, %H:%M") %></h6>-->
+<!--        <p class="card-text"><%#= review.body %></p>-->
+<!--      </div>-->
+<!--    </div>-->
+  <%# end %>
+<!--</div>-->
+
+
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
   <div class="row">
     <!-- Колонка для изображения -->
     <div class="col-md-4">
       <h1><%= @doctor.name %></h1>
       <% if @doctor.image.attached? %>
-        <%= image_tag @doctor.image, alt: @doctor.name, class: 'img-fluid' %>
+        <%= image_tag @doctor.image, alt: @doctor.name, class: 'img-fluid mb-3' %>
       <% end %>
     </div>
 
     <!-- Колонка для описания -->
     <div class="col-md-8">
-      <p><strong>Специальность:</strong> <%= @doctor.specialty %></p>
-      <p><strong>Телефон:</strong> <%= @doctor.phone %></p>
-      <p><strong>Опыт работы:</strong> <%= @doctor.description %></p>
+      <div class="mb-3">
+        <p><strong>Специальность:</strong> <%= @doctor.specialty %></p>
+        <p><strong>Телефон:</strong> <%= @doctor.phone %></p>
+        <p><strong>Опыт работы:</strong> <%= @doctor.description %></p>
+      </div>
+
+      <% if current_user.admin? || current_user == @doctor %>
+        <div class="mb-3">
+          <%= link_to 'Редактировать', edit_doctor_path(@doctor), class: 'btn btn-primary mr-2' %>
+          <%= button_to 'Удалить', @doctor, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+        </div>
+      <% end %>
 
       <div>
-        <% if current_user.admin? || current_user == @doctor %>
-          <%= link_to 'Редактировать', edit_doctor_path(@doctor), class: 'btn btn-primary' %>
-          <%= button_to 'Удалить', @doctor, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
-        <% end %>
         <%= link_to 'Назад к списку', doctors_path, class: 'btn btn-secondary' %>
       </div>
     </div>
   </div> <!-- Закрытие блока row -->
 
-  <p style="color: green"><%= notice %></p>
+  <hr>
 
-  <h2>Текущие отзывы:</h2>
+  <h2 class="mt-4">Текущие отзывы:</h2>
   <% @doctor.reviews.each do |review| %>
     <div class="card mb-4">
       <div class="card-body">

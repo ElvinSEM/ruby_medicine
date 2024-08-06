@@ -1,0 +1,63 @@
+ru:
+  appointments:
+    index:
+      show: "Показать"
+      edit: "Изменить"
+    edit:
+      title: "Редактирование приёма"
+      show: "Показать этот приём"
+      back: "Назад к приёмам"
+  time:
+    formats:
+      long: "%d %B %Y, %H:%M" # Пример формата: 12 июля 2023, 14:30
+
+  devise:
+    sessions:
+      user:
+        signed_in: "Вы успешно вошли в систему"
+        signed_out: "Вы успешно вышли из системы"
+      signed_in: "Вы вошли в систему"
+      signed_out: "Вы вышли из системы"
+    failure:
+      user:
+        not_found_in_database: "Не удалось найти пользователя с такими данными"
+      not_found_in_database: "Не удалось найти пользователя с такими данными"
+
+  helpers:
+    submit:
+      create: "Создать"
+      update: "Обновить"
+      submit: "Сохранить"
+
+  activerecord:
+    attributes:
+      doctor:
+        name: "Имя"
+        specialty: "Специальность"
+        phone: "Телефон"
+        description: "Описание"
+        image: "Изображение"
+
+  errors:
+    messages:
+      record_invalid: "Введенные данные не верны"
+      restricted: "Ограничение"
+      blank: "Не может быть пустым"
+      # другие сообщения об ошибках, если необходимо
+
+  flash:
+    notice:
+      doctor:
+        created: "Доктор был успешно создан."
+        updated: "Доктор был успешно обновлен."
+        destroyed: "Доктор был успешно удален."
+
+  label:
+    name: "Имя"
+    specialty: "Специальность"
+    phone: "Телефон"
+    description: "Описание"
+    image: "Изображение"
+
+  links:
+    new_doctor: "Новый доктор"

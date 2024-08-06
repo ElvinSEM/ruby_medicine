@@ -1,20 +1,54 @@
+<%# if current_user.admin? || current_user == @doctor %>
+  <%#= link_to 'New Doctor', new_doctor_path %>
+<%# end %>
+
+<!--<div class="row doctor-list">-->
+  <%# @doctors.each do |doctor| %>
+<!--    <div class="col-sm-6 col-md-3">-->
+<!--      <div class="card">-->
+        <%# if doctor.image.attached? %>
+          <%#= image_tag doctor.image, class: "card-img-top", alt: doctor.name %>
+        <%# end %>
+<!--        <div class="card-body">-->
+<!--          <h5 class="card-title"><%#= doctor.name %></h5>-->
+<!--          <h6 class="card-subtitle mb-2 text-muted"><%#= doctor.specialty %></h6>-->
+<!--          <a href="<%#= doctor_path(doctor) %>" class="btn btn-primary">Подробнее</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  <%# end %>
+<!--</div>-->
+
+
 <% if current_user.admin? || current_user == @doctor %>
-  <%= link_to 'New Doctor', new_doctor_path %>
+  <%= link_to t('links.new_doctor'), new_doctor_path, class: "btn btn-primary mb-3" %>
 <% end %>
 
-<div class="doctor-list">
-  <% @doctors.each do |doctor| %>
-    <div class="card" style="width: 13rem;">
-      <% if doctor.image.attached? %>
-        <%= image_tag doctor.image, class: "card-img-top", alt: doctor.name %>
-      <% end %>
-      <div class="card-body">
-        <h5 class="card-title"><%= doctor.name %></h5>
-        <h6 class="card-subtitle mb-2 text-muted"><%= doctor.specialty %></h6>
-        <a href="<%= doctor_path(doctor) %>" class="btn btn-primary">Подробнее</a>
-      </div>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="text-center">Наши специалисты</h2>
     </div>
-  <% end %>
+  </div>
+
+  <div class="row doctor-list">
+    <% @doctors.each do |doctor| %>
+      <div class="col-sm-6 col-md-4 col-lg-3 mb-4" >
+        <div class="card">
+          <% if doctor.image.attached? %>
+            <%= image_tag doctor.image, class: "card-img-top", alt: doctor.name, itemprop: "image" %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title" itemprop="name"><%= doctor.name %></h5>
+            <h6 class="card-subtitle mb-2 text-muted" itemprop="description"><%= doctor.specialty %></h6>
+            <a href="<%= doctor_path(doctor) %>" class="btn btn-primary mb-2">Подробнее</a>
+            <%= link_to "Записаться на прием", new_appointment_path, class: 'btn btn-success' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+
 
 <%#= render 'form', doctor: @doctor || Doctor.new %>

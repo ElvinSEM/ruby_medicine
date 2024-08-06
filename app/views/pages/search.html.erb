@@ -1,0 +1,27 @@
+<!-- app/views/pages/search.html.erb -->
+<h1>Результаты поиска для "<%= @query %>"</h1>
+
+<h2>Доктора</h2>
+<% @doctors.each do |doctor| %>
+  <p><%= link_to doctor.name, doctor_path(doctor) %> - <%= doctor.specialty %></p>
+<% end %>
+
+<h2>Отзывы</h2>
+<% @reviews.each do |review| %>
+  <p><%= link_to review.name, review_path(review) %> - <%= review.body.truncate(100) %></p>
+<% end %>
+
+<h2>Услуги</h2>
+<% @services.each do |service| %>
+  <p><%= link_to service.name, service_path(service) %> - <%= service.description.truncate(100) %></p>
+<% end %>
+
+<h2>Записи на прием</h2>
+<% @appointments.each do |appointment| %>
+  <p><%= appointment.info %> - <%= appointment.problem_description.truncate(100) %></p>
+<% end %>
+
+<h2>Пользователи</h2>
+<% @users.each do |user| %>
+  <p><%= link_to user.username, user_path(user) %> - <%= user.email %></p>
+<% end %>

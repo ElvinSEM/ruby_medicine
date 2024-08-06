@@ -1,7 +1,7 @@
-<h1>Editing appointment</h1>
+<h1><%= t('.title') %></h1>
 
 <%= render "form", appointment: @appointment %>
 <div>
-  <%= link_to "Show this appointment", @appointment %> |
-  <%= link_to "Back to appointments", appointments_path %>
+  <%= link_to t('.show'), @appointment %> |
+  <%= link_to t('.back'), appointments_path %>
 </div>
