@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     @doctors = Doctor.all
     @services = Service.all
-    @reviews = Review.all
+    @reviews = Review.limit(3)
 
   end
 end

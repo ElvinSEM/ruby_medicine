@@ -13,7 +13,8 @@ end
 
 RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :feature
-
+  config.before(:suite) do
+    ActiveJob::Base.queue_adapter = :test
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryBot::Syntax::Methods
 
@@ -29,4 +30,5 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+ end
 end

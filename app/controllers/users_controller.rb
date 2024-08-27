@@ -22,8 +22,8 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-    binding.pry
     if @user.save
+      UserMailer.welcome_email(@user).deliver_now
       redirect_to @user, notice: "User  успешно создан."
     else
       render :new, status: :unprocessable_entity
@@ -41,10 +41,8 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    binding.pry
-
     @user.destroy
-    redirect_to destroy_user_session_url, notice: "User был успешно удален.", status: :see_other
+    redirect_to root_path, notice: "User был успешно удален.", status: :see_other
   end
 
   private
@@ -55,7 +53,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email, :password_, :digest)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
 end
 

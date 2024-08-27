@@ -22,8 +22,16 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem 'sassc-rails'
 gem "turbo-rails"
+gem 'pagy'
+gem 'active_link_to'
+gem 'sidekiq'
+gem 'sidekiq-cron'
+gem 'redis'
+
+gem 'telegram-bot-ruby', '~> 1.0'
 
 group :development, :test do
+  gem 'letter_opener'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'factory_bot'
   gem 'factory_bot_rails'

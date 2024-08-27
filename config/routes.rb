@@ -1,4 +1,6 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekig'
   # devise_for :admin_users, ActiveAdmin::Devise.config
   # Маршруты Devise для обычных пользователей
   # devise_for :users

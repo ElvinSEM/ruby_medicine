@@ -35,15 +35,94 @@
 <%# end %>
 
 
+<%#= form_with(model: @appointment, local: true, class: "needs-validation", novalidate: true) do |form| %>
+<!--  <div class="row mb-3">-->
+<!--    <div class="col-md-6">-->
+      <%#= form.label :age, "Ваш возраст", class: 'form-label' %>
+      <%#= form.text_field :age, placeholder: "Ваш возраст", id: "appointment_age", class: 'form-control', required: true %>
+<!--      <div class="invalid-feedback">-->
+<!--        Пожалуйста, введите ваш возраст.-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="col-md-6">-->
+      <%#= form.label :problem_id, "Проблема или заболевание", class: 'form-label' %>
+      <%#= form.select :problem_id, Appointment::PROBLEMS.map { |k, v| [v, k] }, { prompt: 'Выберите проблему или заболевание' }, class: 'form-select', id: "appointment_problem_id", required: true %>
+<!--      <div class="invalid-feedback">-->
+<!--        Пожалуйста, выберите проблему или заболевание.-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+    <%#= form.label :info, "Доп. информация", class: 'form-label' %>
+    <%#= form.text_area :info, placeholder: "Доп. информация", id: "appointment_info", class: 'form-control' %>
+<!--  </div>-->
+
+<!--  <div class="row mb-3">-->
+<!--    <div class="col-md-6">-->
+      <%#= form.label :start_date, "Выберите дату", class: 'form-label' %>
+      <%#= form.date_select :start_time, order: [:day, :month, :year], default: Date.today, class: 'form-control' %>
+<!--      <div class="invalid-feedback">-->
+<!--        Пожалуйста, выберите дату.-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="col-md-6">-->
+      <%#= form.label :start_time, "Выберите время", class: 'form-label' %>
+      <%#= form.time_select :start_time, minute_step: 30, default: { hour: 8 }, class: 'form-control' %>
+<!--      <div class="invalid-feedback">-->
+<!--        Пожалуйста, выберите время.-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+    <%#= form.label :doctor_id, "Выберите врача", class: 'form-label' %>
+    <%#= form.collection_select :doctor_id, @doctors, :id, :name, { prompt: 'Выберите врача' }, class: 'form-select', id: "appointment_doctor_id", required: true if @doctors %>
+<!--    <div class="invalid-feedback">-->
+<!--      Пожалуйста, выберите врача.-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="mb-3">-->
+    <%#= form.submit 'Записаться', class: 'btn btn-primary' %>
+<!--  </div>-->
+<%# end %>
+
+<!--<script>-->
+<!--    // JavaScript for Bootstrap form validation-->
+<!--    (function () {-->
+<!--        'use strict'-->
+
+<!--        // Fetch all the forms we want to apply custom Bootstrap validation styles to-->
+<!--        var forms = document.querySelectorAll('.needs-validation')-->
+
+<!--        // Loop over them and prevent submission-->
+<!--        Array.prototype.slice.call(forms)-->
+<!--            .forEach(function (form) {-->
+<!--                form.addEventListener('submit', function (event) {-->
+<!--                    if (!form.checkValidity()) {-->
+<!--                        event.preventDefault()-->
+<!--                        event.stopPropagation()-->
+<!--                    }-->
+
+<!--                    form.classList.add('was-validated')-->
+<!--                }, false)-->
+<!--            })-->
+<!--    })()-->
+<!--</script>-->
+
+
 <%= form_with(model: @appointment, local: true, class: "needs-validation", novalidate: true) do |form| %>
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <%= form.label :age, "Ваш возраст", class: 'form-label' %>
-      <%= form.text_field :age, placeholder: "Ваш возраст", id: "appointment_age", class: 'form-control', required: true %>
-      <div class="invalid-feedback">
-        Пожалуйста, введите ваш возраст.
-      </div>
-    </div>
+<!--  <div class="row mb-3">-->
+<!--    <div class="col-md-6">-->
+      <%#= form.label :age, "Ваш возраст", class: 'form-label' %>
+      <%#= form.text_field :age, placeholder: "Ваш возраст", id: "appointment_age", class: 'form-control', required: true %>
+<!--      <div class="invalid-feedback">-->
+<!--        Пожалуйста, введите ваш возраст.-->
+<!--      </div>-->
+<!--    </div>-->
 
     <div class="col-md-6">
       <%= form.label :problem_id, "Проблема или заболевание", class: 'form-label' %>
@@ -52,7 +131,7 @@
         Пожалуйста, выберите проблему или заболевание.
       </div>
     </div>
-  </div>
+<!--  </div>-->
 
   <div class="mb-3">
     <%= form.label :info, "Доп. информация", class: 'form-label' %>
@@ -61,27 +140,19 @@
 
   <div class="row mb-3">
     <div class="col-md-6">
-      <%= form.label :start_date, "Выберите дату", class: 'form-label' %>
-      <%= form.date_select :start_time, order: [:day, :month, :year], default: Date.today, class: 'form-control' %>
+      <%= form.label :start_time, "Выберите дату и время", class: 'form-label' %>
+      <%= form.datetime_select :start_time, default: DateTime.now.in_time_zone('Moscow'), include_blank: false, minute_step: 30, class: 'form-control' %>
       <div class="invalid-feedback">
-        Пожалуйста, выберите дату.
+        Пожалуйста, выберите дату и время.
       </div>
     </div>
 
     <div class="col-md-6">
-      <%= form.label :start_time, "Выберите время", class: 'form-label' %>
-      <%= form.time_select :start_time, minute_step: 30, default: { hour: 8 }, class: 'form-control' %>
+      <%= form.label :doctor_id, "Выберите врача", class: 'form-label' %>
+      <%= form.collection_select :doctor_id, @doctors, :id, :name, { prompt: 'Выберите врача' }, class: 'form-select', id: "appointment_doctor_id", required: true if @doctors %>
       <div class="invalid-feedback">
-        Пожалуйста, выберите время.
+        Пожалуйста, выберите врача.
       </div>
-    </div>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :doctor_id, "Выберите врача", class: 'form-label' %>
-    <%= form.collection_select :doctor_id, @doctors, :id, :name, { prompt: 'Выберите врача' }, class: 'form-select', id: "appointment_doctor_id", required: true if @doctors %>
-    <div class="invalid-feedback">
-      Пожалуйста, выберите врача.
     </div>
   </div>
 
@@ -112,5 +183,7 @@
             })
     })()
 </script>
+
+
 
 

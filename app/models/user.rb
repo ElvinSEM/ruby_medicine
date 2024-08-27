@@ -6,12 +6,11 @@ class User < ApplicationRecord
     has_many :appointments
     has_many :doctors, through: :appointments
     has_many :reviews
-
-    validates :phone, presence: true, uniqueness: true #format: { with: /A+d{10,15}z/ }
-    # Валидация наличия username
-    validates :username, presence: true
     has_many :appointments
     has_many :doctors, through: :appointments
+
+    validates :phone, presence: true, uniqueness: true #format: { with: /A+d{10,15}z/ }
+    validates :username, presence: true
 
     def admin?
         role == 'admin'
@@ -30,7 +29,7 @@ class User < ApplicationRecord
           #avatar_url: auth.info.image
         )
 
-        #UserMailer.welcome_email(user).deliver_later
-        #user
+        UserMailer.welcome_email(user).deliver_later
+        user
     end
 end

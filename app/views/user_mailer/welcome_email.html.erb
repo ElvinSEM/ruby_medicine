@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to My Awesome Site</title>
+</head>
+<body>
+<h1>Welcome to My Awesome Site, <%= @user.username %>!</h1>
+<p>
+  You have successfully signed up to My Awesome Site.
+</p>
+<p>
+  To login, visit the following URL: <%= link_to 'Login', @url %>
+</p>
+</body>
+</html>
