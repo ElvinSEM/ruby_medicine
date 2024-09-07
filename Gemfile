@@ -27,10 +27,13 @@ gem 'active_link_to'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'redis'
+gem 'whenever', require: false
 
 gem 'telegram-bot-ruby', '~> 1.0'
 
 group :development, :test do
+  gem 'omniauth-test'
+
   gem 'letter_opener'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'factory_bot'

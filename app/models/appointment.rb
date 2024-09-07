@@ -108,14 +108,14 @@ class Appointment < ApplicationRecord
     PROBLEMS[self.problem_id]
   end
 
-  def start_time_in_user_time_zone
-    start_time.in_time_zone('Moscow')
-  end
+  # def start_time_in_user_time_zone
+  #   start_time.in_time_zone('Moscow')
+  # end
 
-  def self.appointments_in_an_hour
-    now = Time.current
-    where(start_time: now + 30.minutes..now + 1.hour)
-  end
+  # def self.appointments_in_an_hour
+  #   now = Time.current
+  #   where(start_time: now + 30.minutes..now + 1.hour)
+  # end
 
   private
 
@@ -136,7 +136,7 @@ class Appointment < ApplicationRecord
     end
   end
 
-  def convert_start_time_to_utc
-    self.start_time = start_time.in_time_zone('Moscow').utc
-  end
+  # def convert_start_time_to_utc
+  #   self.start_time = start_time.in_time_zone('Moscow').utc
+  # end
 end

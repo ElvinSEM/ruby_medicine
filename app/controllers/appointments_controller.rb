@@ -119,8 +119,6 @@
 #
 
 
-require 'telegram/bot'
-
 class AppointmentsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy, :index]
   before_action :set_problems, only: [:show, :edit, :update, :destroy]
@@ -150,7 +148,6 @@ class AppointmentsController < ApplicationController
       @appointment.errors.add(:start_time, "Время записи должно быть кратным 30 минутам")
       render turbo_stream: turbo_stream.append(:notices, partial: 'notices/notice', locals: { notices: @appointment.errors.full_messages, key: 'danger' }) and return
     end
-
     if @appointment.save
       msg = "✅ *Запись подтверждена!*\n\n📅 *Дата:* #{@appointment.start_time.strftime('%d.%m.%Y')}\n🕒 *Время:* #{@appointment.start_time.strftime('%H:%M')}\n\nДо встречи!"
       # binding.pry
@@ -197,21 +194,21 @@ class AppointmentsController < ApplicationController
     }
   end
 
-  def send_telegram_confirmation
-    if @appointment.user.telegram_chat_id.present?
-      bot = Telegram::Bot::Client.new(ENV['TELEGRAM_BOT_API_TOKEN'])
-      doctor = appointment.doctor
-      message = "Ваша запись на прием подтверждена: #{@appointment.start_time} - с доктором  #{doctor.name}"
-      begin
-        bot.api.send_message(chat_id: @appointment.user.telegram_chat_id, text: message)
-      rescue Telegram::Bot::Exceptions::ResponseError => e
-        Rails.logger.error "Ошибка Telegram API: #{e.message}"
-      end
-    else
-      Rails.logger.info "Пользователь #{@appointment.user.id} не имеет telegram_chat_id, сообщение не отправлено."
-    end
-  end
-
+  # def send_telegram_confirmation
+  #   if @appointment.user.telegram_chat_id.present?
+  #     bot = Telegram::Bot::Client.new(ENV['TELEGRAM_BOT_API_TOKEN'])
+  #     doctor = appointment.doctor
+  #     message = "Ваша запись на прием подтверждена: #{@appointment.start_time} - с доктором  #{doctor.name}"
+  #     begin
+  #       bot.api.send_message(chat_id: @appointment.user.telegram_chat_id, text: message)
+  #     rescue Telegram::Bot::Exceptions::ResponseError => e
+  #       Rails.logger.error "Ошибка Telegram API: #{e.message}"
+  #     end
+  #   else
+  #     Rails.logger.info "Пользователь #{@appointment.user.id} не имеет telegram_chat_id, сообщение не отправлено."
+  #   end
+  # end
+  #
 
 
   # def schedule_appointment_reminder

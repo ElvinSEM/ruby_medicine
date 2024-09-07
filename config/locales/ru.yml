@@ -1,16 +1,66 @@
 ru:
   appointments:
-    index:
-      show: "Показать"
-      edit: "Изменить"
-    edit:
-      title: "Редактирование приёма"
-      show: "Показать этот приём"
-      back: "Назад к приёмам"
-  time:
-    formats:
-      long: "%d %B %Y, %H:%M" # Пример формата: 12 июля 2023, 14:30
+    form:
+      title: 'Запись на прием'
+      show: 'Показать прием'
+      back: 'Назад к записям'
+      age_label: 'Ваш возраст'
+      age_placeholder: 'Введите ваш возраст'
+      age_error: 'Пожалуйста, введите ваш возраст.'
+      problem_label: 'Проблема или заболевание'
+      problem_prompt: 'Выберите проблему или заболевание'
+      problem_error: 'Пожалуйста, выберите проблему или заболевание.'
+      info_label: 'Доп. информация'
+      info_placeholder: 'Введите дополнительную информацию'
+      start_time_label: 'Выберите дату и время'
+      start_time_error: 'Пожалуйста, выберите дату и время.'
+      doctor_label: 'Выберите врача'
+      doctor_prompt: 'Выберите врача'
+      doctor_error: 'Пожалуйста, выберите врача.'
+      submit: 'Записаться'
 
+    title: 'Записи на прием'
+    new_appointment: 'Новый прием'
+    doctor: 'Врач'
+    appointment_time: 'Время приема'
+    problem_description: 'Описание проблемы'
+    actions: 'Действия'
+
+    show:
+      appointment_details: 'Детали приема'
+      appointment_date: 'Дата приема'
+      doctor: 'Врач'
+      problem_description: 'Описание проблемы'
+      age: 'Возраст'
+      additional_info: 'Доп. информация'
+      edit: 'Изменить'
+      back_to_list: 'Назад к списку'
+      delete: 'Удалить'
+      confirm_delete: 'Вы уверены?'
+
+    new:
+      title: 'Новая запись на прием'
+      show: 'Показать'
+      back: 'Назад к списку'
+
+    edit:
+      title: 'Редактировать запись на прием'
+      show: 'Показать'
+      back: 'Назад к списку'
+
+    index:
+      show: 'Показать'
+      edit: 'Изменить'
+
+    time:
+      formats:
+        long: "%d %B %Y, %H:%M" # Пример формата: 12 июля 2023, 14:30
+
+    activerecord:
+      attributes:
+        appointment:
+          appointment_date: "Время приема"
+          doctor_id: "Доктор"
   devise:
     sessions:
       user:

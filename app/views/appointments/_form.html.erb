@@ -113,51 +113,54 @@
 <!--    })()-->
 <!--</script>-->
 
-
 <%= form_with(model: @appointment, local: true, class: "needs-validation", novalidate: true) do |form| %>
-<!--  <div class="row mb-3">-->
+<!--   Возраст (закомментировано, если нужно вернуть) -->
+<!--    <div class="row mb-3">-->
 <!--    <div class="col-md-6">-->
-      <%#= form.label :age, "Ваш возраст", class: 'form-label' %>
-      <%#= form.text_field :age, placeholder: "Ваш возраст", id: "appointment_age", class: 'form-control', required: true %>
+      <%#= form.label :age, t('.age_label'), class: 'form-label' %>
+  <%#= form.text_field :age, placeholder: t('.age_placeholder'), id: "appointment_age", class: 'form-control', required: true %>
 <!--      <div class="invalid-feedback">-->
-<!--        Пожалуйста, введите ваш возраст.-->
+        <%#= t('.age_error') %>
 <!--      </div>-->
 <!--    </div>-->
-
-    <div class="col-md-6">
-      <%= form.label :problem_id, "Проблема или заболевание", class: 'form-label' %>
-      <%= form.select :problem_id, Appointment::PROBLEMS.map { |k, v| [v, k] }, { prompt: 'Выберите проблему или заболевание' }, class: 'form-select', id: "appointment_problem_id", required: true %>
-      <div class="invalid-feedback">
-        Пожалуйста, выберите проблему или заболевание.
-      </div>
-    </div>
 <!--  </div>-->
 
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <%= form.label :problem_id, t('.problem_label'), class: 'form-label' %>
+      <%= form.select :problem_id, Appointment::PROBLEMS.map { |k, v| [v, k] }, { prompt: t('.problem_prompt') }, class: 'form-select', id: "appointment_problem_id", required: true %>
+      <div class="invalid-feedback">
+        <%= t('.problem_error') %>
+      </div>
+    </div>
+  </div>
+
   <div class="mb-3">
-    <%= form.label :info, "Доп. информация", class: 'form-label' %>
-    <%= form.text_area :info, placeholder: "Доп. информация", id: "appointment_info", class: 'form-control' %>
+    <%= form.label :info, t('.info_label'), class: 'form-label' %>
+    <%= form.text_area :info, placeholder: t('.info_placeholder'), id: "appointment_info", class: 'form-control' %>
   </div>
 
   <div class="row mb-3">
     <div class="col-md-6">
-      <%= form.label :start_time, "Выберите дату и время", class: 'form-label' %>
+      <%= form.label :start_time, t('.start_time_label'), class: 'form-label' %>
       <%= form.datetime_select :start_time, default: DateTime.now.in_time_zone('Moscow'), include_blank: false, minute_step: 30, class: 'form-control' %>
       <div class="invalid-feedback">
-        Пожалуйста, выберите дату и время.
+        <%= t('.start_time_error') %>
       </div>
     </div>
 
     <div class="col-md-6">
-      <%= form.label :doctor_id, "Выберите врача", class: 'form-label' %>
-      <%= form.collection_select :doctor_id, @doctors, :id, :name, { prompt: 'Выберите врача' }, class: 'form-select', id: "appointment_doctor_id", required: true if @doctors %>
+      <%= form.label :doctor_id, t('.doctor_label'), class: 'form-label' %>
+      <%= form.collection_select :doctor_id, @doctors, :id, :name, { prompt: t('.doctor_prompt') }, class: 'form-select', id: "appointment_doctor_id", required: true if @doctors %>
       <div class="invalid-feedback">
-        Пожалуйста, выберите врача.
+        <%= t('.doctor_error') %>
       </div>
     </div>
   </div>
 
   <div class="mb-3">
-    <%= form.submit 'Записаться', class: 'btn btn-primary' %>
+    <%= form.submit t('.submit'), class: 'btn btn-primary' %>
   </div>
 <% end %>
 

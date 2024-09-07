@@ -1,6 +1,63 @@
 en:
   appointments:
+    form:
+      title: 'Appointment Booking'
+      show: 'Show Appointment'
+      back: 'Back to Appointments'
+      age_label: 'Your age'
+      age_placeholder: 'Enter your age'
+      age_error: 'Please enter your age.'
+      problem_label: 'Problem or illness'
+      problem_prompt: 'Select a problem or illness'
+      problem_error: 'Please select a problem or illness.'
+      info_label: 'Additional Information'
+      info_placeholder: 'Enter additional information'
+      start_time_label: 'Select date and time'
+      start_time_error: 'Please select date and time.'
+      doctor_label: 'Select a doctor'
+      doctor_prompt: 'Select a doctor'
+      doctor_error: 'Please select a doctor.'
+      submit: 'Book Appointment'
+
+    title: 'Appointments'
+    new_appointment: 'New Appointment'
+    doctor: 'Doctor'
+    appointment_time: 'Appointment Time'
+    problem_description: 'Problem Description'
+    actions: 'Actions'
+
+    show:
+      appointment_details: 'Appointment Details'
+      appointment_date: 'Appointment Date'
+      doctor: 'Doctor'
+      problem_description: 'Problem Description'
+      age: 'Age'
+      additional_info: 'Additional Information'
+      edit: 'Edit'
+      back_to_list: 'Back to list'
+      delete: 'Delete'
+      confirm_delete: 'Are you sure?'
+
+    new:
+      title: 'New Appointment'
+      show: 'Show'
+      back: 'Back to list'
+
     edit:
-      title: "Editing appointment"
-      show: "Show this appointment"
-      back: "Back to appointments"
+      title: 'Edit Appointment'
+      show: 'Show'
+      back: 'Back to list'
+
+    index:
+      show: 'Show'
+      edit: 'Edit'
+
+    time:
+      formats:
+        long: "%B %d, %Y, %H:%M" # Example: July 12, 2023, 14:30
+
+    activerecord:
+      attributes:
+        appointment:
+          appointment_date: "Appointment Time"
+          doctor_id: "Doctor"

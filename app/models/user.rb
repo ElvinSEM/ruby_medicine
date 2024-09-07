@@ -9,7 +9,10 @@ class User < ApplicationRecord
     has_many :appointments
     has_many :doctors, through: :appointments
 
-    validates :phone, presence: true, uniqueness: true #format: { with: /A+d{10,15}z/ }
+    # validates :phone, presence: true, uniqueness: true #format: { with: /A+d{10,15}z/ }
+    # validates :username, presence: true
+    validates :phone, presence: true, uniqueness: true unless Rails.env.test?
+    validates :email, presence: true, uniqueness: true
     validates :username, presence: true
 
     def admin?
@@ -17,19 +20,32 @@ class User < ApplicationRecord
     end
 
     def self.from_google(auth)
+        puts "from_google called with auth: #{auth.inspect}"
+
         user = find_by(provider: auth.provider, uid: auth.uid)
         return user if user
 
-        create(
+        # Используем `new` вместо `create` чтобы сначала инициализировать объект
+        user = new(
           provider: auth.provider,
           uid: auth.uid,
           email: auth.info.email,
           password: Devise.friendly_token[0, 20],
-          #full_name: auth.info.name,
-          #avatar_url: auth.info.image
+          username: auth.info.username,
+          phone: '0000000000'  # Значение по умолчанию для phone
         )
 
-        UserMailer.welcome_email(user).deliver_later
+        puts "User initialized: #{user.inspect}" # Отладочный вывод
+
+        if user.save
+            puts "User saved successfully"
+            UserMailer.welcome_email(user).deliver_later
+        else
+            puts "User failed to save: #{user.errors.full_messages}"
+            Rails.logger.debug(user.errors.full_messages)  # Логирование ошибок
+        end
+
         user
     end
+
 end

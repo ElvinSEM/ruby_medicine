@@ -23,5 +23,8 @@ Rails.application.routes.draw do
       get 'show_all'
     end
   end
+  scope "(:locale)", locale: /en|ru|es/ do
+    resources :articles
+    end
 end
 

@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.welcome_email(@user).deliver_now
+
       redirect_to @user, notice: "User  успешно создан."
     else
       render :new, status: :unprocessable_entity
@@ -46,7 +47,8 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
@@ -54,8 +56,6 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :email, :password, :password_confirmation)
-    end
-end
 
 #
 # class UsersController < ApplicationController
@@ -81,4 +81,5 @@ end
 #   def set_user
 #     @user = User.find(params[:id])
 #   end
-# end
+    end
+end

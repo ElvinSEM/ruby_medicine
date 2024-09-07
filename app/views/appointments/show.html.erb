@@ -3,29 +3,29 @@
 
   <div class="card mb-4">
     <div class="card-header">
-      <h4>Детали Приема</h4>
+      <h4><%= t('.appointment_details') %></h4>
     </div>
     <div class="card-body">
       <p>
-        <strong>Дата приема:</strong> <%= l @appointment.start_time, format: :long %>
+        <strong><%= t('appointments.show.appointment_date') %>:</strong> <%= l @appointment.start_time, format: :long %>
       </p>
       <p>
-        <strong>Врач:</strong> <%= @appointment.doctor.name %>
+        <strong><%= t('appointments.show.doctor') %>:</strong> <%= @appointment.doctor.name %>
       </p>
       <p>
-        <strong>Описание проблемы:</strong> <%= Appointment::PROBLEMS[@appointment.problem_id] %>
+        <strong><%= t('appointments.show.problem_description') %>:</strong> <%= Appointment::PROBLEMS[@appointment.problem_id] %>
       </p>
       <p>
-        <strong>Возраст:</strong> <%= @appointment.age %>
+        <strong><%= t('appointments.show.age') %>:</strong> <%= @appointment.age %>
       </p>
       <p>
-        <strong>Доп. информация:</strong> <%= @appointment.info %>
+        <strong><%= t('appointments.show.additional_info') %>:</strong> <%= @appointment.info %>
       </p>
     </div>
     <div class="card-footer d-flex justify-content-start">
-      <%= link_to 'Изменить', edit_appointment_path(@appointment), class: 'btn btn-warning' %>
-      <%= link_to 'Назад к списку', appointments_path, class: 'btn btn-secondary' %>
-      <%= button_to 'Удалить', @appointment, method: :delete, class: 'btn btn-danger', data: { confirm: 'Вы уверены?' } %>
+      <%= link_to t('appointments.show.edit'), edit_appointment_path(@appointment), class: 'btn btn-warning' %>
+      <%= link_to t('appointments.show.back_to_list'), appointments_path, class: 'btn btn-secondary' %>
+      <%= button_to t('appointments.show.delete'), @appointment, method: :delete, class: 'btn btn-danger', data: { confirm: t('appointments.show.confirm_delete') } %>
     </div>
   </div>
 </div>
