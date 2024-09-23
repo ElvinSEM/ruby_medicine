@@ -1,10 +1,10 @@
+
 class AppointmentReminderJob < ApplicationJob
   queue_as :default
 
   def perform
     Rails.logger.info "AppointmentReminderJob started at #{Time.current}"
 
-    # Получение списка записей на прием, которые начнутся через час
     appointments = Appointment.where(start_time: (Time.current.in_time_zone('Moscow') + 1.hour).beginning_of_hour..(Time.current.in_time_zone('Moscow') + 1.hour).end_of_hour)
     Rails.logger.info "Found #{appointments.count} appointments for reminders"
 
@@ -27,7 +27,6 @@ class AppointmentReminderJob < ApplicationJob
     end
   end
 end
-
 
 
 # def perform

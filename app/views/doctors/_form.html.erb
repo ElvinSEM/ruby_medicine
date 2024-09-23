@@ -46,9 +46,7 @@
 <!--  </div>-->
 <!--</div>-->
 
-
 <div class="container mt-5">
-  <!--  <div class="row justify-content-center">-->
   <div class="col-md-6">
     <%= form_with(model: doctor, local: true, class: 'needs-validation') do |form| %>
       <% if doctor.errors.any? %>
@@ -63,27 +61,27 @@
       <% end %>
 
       <div class="form-group">
-        <%= form.label :name, class: 'form-label' %>
+        <%= form.label :name, t('doctors.form.name'), class: 'form-label' %>
         <%= form.text_field :name, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= form.label :specialty, class: 'form-label' %>
+        <%= form.label :specialty, t('doctors.form.specialty'), class: 'form-label' %>
         <%= form.text_field :specialty, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= form.label :phone, class: 'form-label' %>
+        <%= form.label :phone, t('doctors.form.phone'), class: 'form-label' %>
         <%= form.text_field :phone, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= form.label :description, class: 'form-label' %>
+        <%= form.label :description, t('doctors.form.description'), class: 'form-label' %>
         <%= form.text_area :description, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= form.label :image, class: 'form-label' %>
+        <%= form.label :image, t('doctors.form.image'), class: 'form-label' %>
         <%= form.file_field :image, class: 'form-control-file' %>
       </div>
 

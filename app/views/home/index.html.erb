@@ -65,12 +65,11 @@
 <!--  </address>-->
 <!--</section>-->
 
-
 <div class="container mt-4">
   <div class="row">
     <div class="col">
-      <h1>Добро пожаловать в офтальмологическую клинику "Видение"!</h1>
-      <h3>Наши услуги</h3>
+      <h1><%= t('clinic.welcome_message') %></h1>
+      <h3><%= t('clinic.our_services') %></h3>
     </div>
   </div>
 
@@ -82,11 +81,11 @@
           <% if service.image.attached? %>
             <%= image_tag service.image, class: "card-img-top", alt: service.name %>
           <% else %>
-            <p class="card-img-top-placeholder">No image attached</p>
+            <p class="card-img-top-placeholder"><%= t('clinic.services.no_image') %></p>
           <% end %>
           <div class="card-body">
             <h5 class="card-title">
-              <%= link_to service.name, service_path(service), class: 'stretched-link' %>
+              <%= link_to t('clinic.services.show'), service_path(service, locale: I18n.locale) %>
             </h5>
           </div>
         </div>
@@ -96,8 +95,8 @@
 
   <!-- Раздел "Наши врачи" -->
   <section id="doctors" class="mt-5">
-    <h2>Наши врачи</h2>
-    <p>В нашей клинике работают высококвалифицированные врачи-офтальмологи.</p>
+    <h2><%= t('clinic.our_doctors') %></h2>
+    <p><%= t('clinic.qualified_doctors') %></p>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <% @doctors.each do |doctor| %>
@@ -106,7 +105,7 @@
             <% if doctor.image.attached? %>
               <%= image_tag doctor.image, class: "card-img-top", alt: doctor.name %>
             <% else %>
-              <p class="card-img-top-placeholder">No image attached</p>
+              <p class="card-img-top-placeholder"><%= t('clinic.doctors.no_image') %></p>
             <% end %>
 
             <div class="card-body">
@@ -115,31 +114,32 @@
             </div>
 
             <div class="card-footer">
-              <small class="text-muted">Последнее обновление: <%= doctor.updated_at.strftime("%d %b, %Y") %></small>
+              <small class="text-muted"><%= t('clinic.doctors.updated_at') %>: <%= doctor.updated_at.strftime("%d %b, %Y") %></small>
             </div>
           </div>
         </div>
       <% end %>
     </div>
   </section>
+
   <!-- Раздел "Отзывы пациентов" -->
   <section id="testimonials" class="mt-5">
-    <h2>Отзывы пациентов</h2>
-    <p>Читайте отзывы наших пациентов о качестве предоставляемых услуг.</p>
+    <h2><%= t('clinic.patient_reviews') %></h2>
+    <p><%= t('clinic.read_reviews') %></p>
 
     <%= render partial: 'reviews/review', collection: @reviews, as: :review %>
 
     <div id="show-more-container">
-      <%= link_to 'Показать все отзывы', show_all_reviews_path, class: 'btn btn-primary', id: 'show-more-button' %>
+      <%= link_to t('clinic.show_all_reviews'), show_all_reviews_path, class: 'btn btn-primary', id: 'show-more-button' %>
     </div>
   </section>
 
   <!-- Раздел "Контактная информация" -->
   <section id="contact" class="mt-5">
-    <h2>Контактная информация</h2>
+    <h2><%= t('clinic.contact_info') %></h2>
     <address>
-      <strong>Адрес клиники:</strong> г. Москва, ул. Здоровья, д. 10<br>
-      <strong>Телефон:</strong> 8 (800) 123-45-67<br>
+      <strong><%= t('clinic.address_label') %>:</strong> <%= t('clinic.address') %><br>
+      <strong><%= t('clinic.phone_label') %>:</strong> <%= t('clinic.phone') %><br>
       <strong>Email:</strong> <a href="mailto:info@visionclinic.ru">info@visionclinic.ru</a>
     </address>
   </section>

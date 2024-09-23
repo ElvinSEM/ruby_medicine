@@ -8,6 +8,11 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @user = current_user
+    # Если у пользователя нет привязанного telegram_chat_id, предлагается привязать
+    if @user.telegram_chat_id.blank?
+      @telegram_bot_link = "https://t.me/CLINIC777_bot"
+    end
   end
 
   # GET /users/new
@@ -24,8 +29,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.welcome_email(@user).deliver_now
-
-      redirect_to @user, notice: "User  успешно создан."
+      @telegram_bot_link = "https://t.me/CLINIC777_bot"
+      redirect_to @user, notice: "Пользователь успешно создан."
     else
       render :new, status: :unprocessable_entity
     end

@@ -30,37 +30,37 @@
           <% if @service.image.attached? %>
             <%= image_tag @service.image, alt: @service.name, class: 'img-fluid mb-3' %>
           <% end %>
-          <p><strong>Цена:</strong> <%= number_to_currency(@service.price) %></p>
-          <p><strong>Описание:</strong></p>
+          <p><strong><%= t('services.show.price') %>:</strong> <%= number_to_currency(@service.price) %></p>
+          <p><strong><%= t('services.show.description') %>:</strong></p>
           <p><%= @service.description %></p>
           <% if current_user.admin? %>
-            <%= link_to 'Редактировать', edit_service_path(@service), class: 'btn btn-primary mr-2' %>
-            <%= button_to 'Удалить', @service, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+            <%= link_to t('actions.edit'), edit_service_path(@service), class: 'btn btn-primary mr-2' %>
+            <%= button_to t('actions.delete'), @service, method: :delete, data: { confirm: t('messages.confirm_delete') }, class: 'btn btn-danger' %>
           <% end %>
-          <%= link_to 'Назад к списку', services_path, class: 'btn btn-secondary mt-3' %>
+          <%= link_to t('actions.back_to_list'), services_path, class: 'btn btn-secondary mt-3' %>
         </div>
       </div>
     </div>
     <div class="col-md-8">
       <div class="card">
         <div class="card-header bg-primary text-white">
-          <h2 class="mb-0">Запишитесь</h2>
+          <h2 class="mb-0"><%= t('services.form.signup') %></h2>
         </div>
         <div class="card-body">
           <form action="/operatsii-na-vekah-i-konyunktive-glaza/#wpcf7-f745-p711-o1" method="post" class="wpcf7-form" novalidate="novalidate">
             <div class="form-group">
-              <label for="edit-submitted-vvedite-vashe-imya">Ваше ФИО</label>
-              <input type="text" name="text-766" class="form-control" id="edit-submitted-vvedite-vashe-imya" placeholder="Введите ваше ФИО" required>
+              <label for="edit-submitted-vvedite-vashe-imya"><%= t('services.form.full_name') %></label>
+              <input type="text" name="text-766" class="form-control" id="edit-submitted-vvedite-vashe-imya" placeholder="<%= t('services.form.full_name_placeholder') %>" required>
             </div>
             <div class="form-group">
-              <label for="edit-submitted-telefon-p">Ваш телефон</label>
-              <input type="tel" name="tel-460" class="form-control" id="edit-submitted-telefon-p" placeholder="Введите ваш телефон" required>
+              <label for="edit-submitted-telefon-p"><%= t('services.form.phone') %></label>
+              <input type="tel" name="tel-460" class="form-control" id="edit-submitted-telefon-p" placeholder="<%= t('services.form.phone_placeholder') %>" required>
             </div>
             <div class="form-check mb-3">
               <input type="checkbox" name="acceptance-rules" class="form-check-input" id="acceptance-rules" checked>
-              <label class="form-check-label" for="acceptance-rules">Согласен на <a href="/soglasie-na-obrabotku-personalnyh-dannyh/" target="_blank">обработку персональных данных</a></label>
+              <label class="form-check-label" for="acceptance-rules"><%= t('services.form.consent', link: link_to(t('services.form.privacy_policy'), '/soglasie-na-obrabotku-personalnyh-dannyh/', target: '_blank')) %></label>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Отправить</button>
+            <button type="submit" class="btn btn-primary btn-block"><%= t('actions.submit') %></button>
           </form>
         </div>
       </div>

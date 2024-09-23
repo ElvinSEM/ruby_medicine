@@ -15,7 +15,8 @@
 <%= form_with(model: review, local: true) do |form| %>
   <% if review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <h2><%= t('errors.title', count: review.errors.count) %> <%= t('errors.messages.prohibited') %></h2> // TODO:
+
 
       <ul>
         <% review.errors.full_messages.each do |message| %>
@@ -28,27 +29,28 @@
   <% if user_signed_in? %>
     <%= form.hidden_field :name, value: current_user.username %>
     <div class="form-group">
-      <label>Your name</label>
+      <%= form.label :name, t('reviews.form.your_name') %>
       <input type="text" value="<%= current_user.username %>" class="form-control" readonly/>
     </div>
   <% else %>
     <div class="form-group">
-      <%= form.label :name, "Your name" %>
+      <%= form.label :name, t('reviews.form.name') %>
       <%= form.text_field :name, class: 'form-control' %>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= form.label :body, "Your review" %>
+    <%= form.label :body, t('reviews.form.body') %>
     <%= form.text_area :body, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= form.label :doctor_id, "Doctor (leave blank for site review)" %>
+    <%= form.label :doctor_id, t('reviews.form.doctor') %>
     <%= form.collection_select :doctor_id, Doctor.all, :id, :name, include_blank: true, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    <%= form.submit t('helpers.submit.create'), class: 'btn btn-primary' %>
   </div>
 <% end %>
+

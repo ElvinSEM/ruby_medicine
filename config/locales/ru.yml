@@ -1,4 +1,58 @@
 ru:
+  en: Английский
+  ru: Русский
+  clinic:
+    title: "Офтальмологическая клиника 'Видение'"
+    welcome_message: "Добро пожаловать в нашу клинику"
+    our_services: "Наши услуги"
+    our_doctors: "Наши врачи"
+    qualified_doctors: "Квалифицированные специалисты для вашего здоровья"
+    patient_reviews: "Отзывы пациентов"
+    read_reviews: "Читайте отзывы наших пациентов"
+    show_all_reviews: "Показать все отзывы"
+    contact_info: "Контактная информация"
+    address_label: "Адрес"
+    address: "ул. Примерная, д. 1, Москва"
+    phone_label: "Телефон"
+    phone: "+7 (495) 123-45-67"
+    all_rights_reserved: "Все права защищены"
+    brand: "Офтальмологическая клиника 'Видение'"
+
+    services:
+      no_image: "Изображение отсутствует"
+      show: "Подробнее об услуге"
+      diagnosis: "Диагностика"
+      eye_treatment: "Лечение глаз"
+      eye_surgery: "Операции на глазах"
+
+    doctors:
+      no_image: "Фото отсутствует"
+      updated_at: "Последнее обновление"
+
+    navigation:
+      home: "Главная"
+      appointments: "Запись на приём"
+      about: "О нас"
+      services: "Услуги"
+      doctors: "Врачи"
+      reviews: "Отзывы"
+      contacts: "Контакты"
+      search: "Поиск"
+      search_placeholder: "Введите запрос"
+
+    user:
+      profile: "Профиль"
+      logout: "Выйти"
+      login: "Вход"
+      signup: "Регистрация"
+
+    footer:
+      contact_info: "Контактная информация"
+      address_label: "Адрес клиники"
+      address: "г. Москва, ул. Здоровья, д. 10"
+      phone_label: "Телефон"
+      phone: "8 (800) 123-45-67"
+
   appointments:
     form:
       title: 'Запись на прием'
@@ -25,52 +79,39 @@ ru:
     appointment_time: 'Время приема'
     problem_description: 'Описание проблемы'
     actions: 'Действия'
-
     show:
       appointment_details: 'Детали приема'
       appointment_date: 'Дата приема'
       doctor: 'Врач'
-      problem_description: 'Описание проблемы'
       age: 'Возраст'
       additional_info: 'Доп. информация'
       edit: 'Изменить'
       back_to_list: 'Назад к списку'
       delete: 'Удалить'
       confirm_delete: 'Вы уверены?'
-
-    new:
-      title: 'Новая запись на прием'
-      show: 'Показать'
-      back: 'Назад к списку'
-
-    edit:
-      title: 'Редактировать запись на прием'
-      show: 'Показать'
-      back: 'Назад к списку'
-
     index:
-      show: 'Показать'
-      edit: 'Изменить'
+      cancel: 'Отменить запись'
+      edit: 'Редактировать запись'
+      back_to_list: 'Назад к списку'
+      cancel_confirmation: 'Вы уверены, что хотите отменить запись?'
 
-    time:
-      formats:
-        long: "%d %B %Y, %H:%M" # Пример формата: 12 июля 2023, 14:30
+  activerecord:
+    attributes:
+      appointment:
+        appointment_date: "Время приема"
+        doctor_id: "Доктор"
+      doctor:
+        name: "Имя"
+        specialty: "Специальность"
+        phone: "Телефон"
+        description: "Описание"
+        image: "Изображение"
 
-    activerecord:
-      attributes:
-        appointment:
-          appointment_date: "Время приема"
-          doctor_id: "Доктор"
   devise:
     sessions:
-      user:
-        signed_in: "Вы успешно вошли в систему"
-        signed_out: "Вы успешно вышли из системы"
-      signed_in: "Вы вошли в систему"
-      signed_out: "Вы вышли из системы"
+      signed_in: "Вы успешно вошли в систему"
+      signed_out: "Вы успешно вышли из системы"
     failure:
-      user:
-        not_found_in_database: "Не удалось найти пользователя с такими данными"
       not_found_in_database: "Не удалось найти пользователя с такими данными"
 
   helpers:
@@ -79,21 +120,11 @@ ru:
       update: "Обновить"
       submit: "Сохранить"
 
-  activerecord:
-    attributes:
-      doctor:
-        name: "Имя"
-        specialty: "Специальность"
-        phone: "Телефон"
-        description: "Описание"
-        image: "Изображение"
-
   errors:
     messages:
       record_invalid: "Введенные данные не верны"
       restricted: "Ограничение"
       blank: "Не может быть пустым"
-      # другие сообщения об ошибках, если необходимо
 
   flash:
     notice:
@@ -109,5 +140,60 @@ ru:
     description: "Описание"
     image: "Изображение"
 
-  links:
-    new_doctor: "Новый доктор"
+  doctors:
+    form:
+      name: 'Имя'
+      specialty: 'Специальность'
+      phone: 'Телефон'
+      description: 'Описание'
+      image: 'Фото'
+
+    index:
+      title: 'Наши специалисты'
+      new_doctor: 'Добавить нового врача'
+      more: 'Подробнее'
+      appointment: 'Записаться на прием'
+
+    show:
+      specialty: 'Специальность'
+      phone: 'Телефон'
+      experience: 'Опыт работы'
+      edit: 'Редактировать'
+      delete: 'Удалить'
+      confirm_delete: 'Вы уверены, что хотите удалить?'
+      back_to_list: 'Назад к списку'
+      reviews_title: 'Текущие отзывы'
+
+  reviews:
+    form:
+      your_name: "Ваше имя"
+      body: "Ваш отзыв"
+      doctor: "Доктор (оставьте пустым для отзыва о сайте)"
+    title: "Отзывы"
+    show_more: "Показать все отзывы"
+    new: "Создать новый отзыв"
+    delete: "Удалить"
+    confirm_delete: "Вы уверены?"
+
+  services:
+    form:
+      name: "Название услуги"
+      price: "Цена"
+      description: "Описание"
+      image: "Изображение"
+    index:
+      title: "Наши услуги"
+      price: "Цена"
+    new:
+      title: "Новая услуга"
+    show:
+      price: "Цена"
+      description: "Описание"
+    form:
+      signup: "Запишитесь"
+      full_name: "Ваше ФИО"
+      full_name_placeholder: "Введите ваше ФИО"
+      phone: "Ваш телефон"
+      phone_placeholder: "Введите ваш телефон"
+      consent: "Согласен на %{link}"
+      privacy_policy: "обработку персональных данных"

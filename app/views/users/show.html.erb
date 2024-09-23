@@ -9,18 +9,23 @@
   <%#= button_to "Destroy this user", @user, method: :delete %>
 <!--</div>-->
 
-
-<!-- app/views/users/_form.html.erb -->
 <h1>Личный кабинет</h1>
 
 <div class="user-profile">
   <h2>Персональные данные</h2>
-  <p><strong>Имя:</strong> <%= @user.name %></p>
+  <p><strong>Имя:</strong> <%= @user.username %></p>
   <p><strong>Email:</strong> <%= @user.email %></p>
   <!-- Другие персональные данные -->
 
-  <h2>История приемов</h2>
-  <%= render 'appointments/list', appointments: @user.appointments %>
+  <!-- Блок с предложением связать аккаунт с Telegram -->
+  <% if @telegram_bot_link %>
+    <div class="alert alert-info mt-3">
+      <strong>Свяжите свой аккаунт с Telegram!</strong>
+      Для упрощения взаимодействия с нами, пожалуйста, перейдите по следующей ссылке:
+      <%= link_to 'Связать аккаунт с Telegram', @telegram_bot_link, target: '_blank' %>
+    </div>
+  <% end %>
 
-  <!-- Дополнительные разделы -->
+<!--  <h2>История приемов</h2>-->
+  <%#= render 'appointments/list', appointments: @user.appointments %>
 </div>
