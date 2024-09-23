@@ -3,10 +3,9 @@ class User < ApplicationRecord
            :recoverable, :rememberable, :validatable,
            :omniauthable, omniauth_providers: %i[ google_oauth2]
 
-    has_many :appointments
+    has_many :appointments, dependent: :destroy
     has_many :doctors, through: :appointments
     has_many :reviews
-    has_many :appointments
     has_many :doctors, through: :appointments
 
     # validates :phone, presence: true, uniqueness: true #format: { with: /A+d{10,15}z/ }

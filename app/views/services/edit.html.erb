@@ -1,7 +1,7 @@
 <div class="container">
-  <h1>Редактировать услугу</h1>
+  <h1><%= t('services.edit.title') %></h1>
 
   <%= render 'form', service: @service %>
 
-  <%= link_to 'Назад', services_path, class: 'btn btn-secondary mt-3' %>
+  <%= link_to t('actions.back'), services_path, class: 'btn btn-secondary mt-3' %>
 </div>

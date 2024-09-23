@@ -1,22 +1,78 @@
 en:
+  en: English
+  ru: Russian
+  clinic:
+    title: "Vision Ophthalmology Clinic"
+    welcome_message: "Welcome to our clinic"
+    our_services: "Our Services"
+    our_doctors: "Our Doctors"
+    qualified_doctors: "Qualified specialists for your health"
+    patient_reviews: "Patient Reviews"
+    read_reviews: "Read reviews from our patients"
+    show_all_reviews: "Show all reviews"
+    contact_info: "Contact Information"
+    address_label: "Address"
+    address: "Example Street 1, Moscow"
+    phone_label: "Phone"
+    phone: "+7 (495) 123-45-67"
+    all_rights_reserved: "All rights reserved"
+    brand: "Vision Ophthalmology Clinic"
+
+    services:
+      no_image: "No image available"
+      show: "Learn more about the service"
+      diagnosis: "Diagnosis"
+      eye_treatment: "Eye Treatment"
+      eye_surgery: "Eye Surgery"
+
+    doctors:
+      no_image: "No photo available"
+      updated_at: "Last updated"
+
+    navigation:
+      home: "Home"
+      appointments: "Appointments"
+      about: "About Us"
+      services: "Services"
+      doctors: "Doctors"
+      reviews: "Reviews"
+      contacts: "Contacts"
+      search: "Search"
+      search_placeholder: "Enter a query"
+
+    user:
+      profile: "Profile"
+      logout: "Logout"
+      login: "Login"
+      signup: "Sign Up"
+
+    footer:
+      contact_info: "Contact Information"
+      address_label: "Clinic Address"
+      address: "Health Street 10, Moscow"
+      phone_label: "Phone"
+      phone: "8 (800) 123-45-67"
+
+
+
   appointments:
     form:
       title: 'Appointment Booking'
       show: 'Show Appointment'
       back: 'Back to Appointments'
-      age_label: 'Your age'
+      age_label: 'Your Age'
       age_placeholder: 'Enter your age'
       age_error: 'Please enter your age.'
-      problem_label: 'Problem or illness'
-      problem_prompt: 'Select a problem or illness'
-      problem_error: 'Please select a problem or illness.'
+      problem_label: 'Problem or Condition'
+      problem_prompt: 'Select a problem or condition'
+      problem_error: 'Please select a problem or condition.'
       info_label: 'Additional Information'
       info_placeholder: 'Enter additional information'
-      start_time_label: 'Select date and time'
+      start_time_label: 'Select Date and Time'
       start_time_error: 'Please select date and time.'
-      doctor_label: 'Select a doctor'
-      doctor_prompt: 'Select a doctor'
-      doctor_error: 'Please select a doctor.'
+      doctor_label: 'Select Doctor'
+      doctor_prompt: 'Choose a doctor'
+      doctor_error: 'Please choose a doctor.'
       submit: 'Book Appointment'
 
     title: 'Appointments'
@@ -25,39 +81,116 @@ en:
     appointment_time: 'Appointment Time'
     problem_description: 'Problem Description'
     actions: 'Actions'
-
     show:
       appointment_details: 'Appointment Details'
       appointment_date: 'Appointment Date'
       doctor: 'Doctor'
-      problem_description: 'Problem Description'
       age: 'Age'
       additional_info: 'Additional Information'
       edit: 'Edit'
-      back_to_list: 'Back to list'
+      back_to_list: 'Back to List'
       delete: 'Delete'
       confirm_delete: 'Are you sure?'
 
-    new:
-      title: 'New Appointment'
-      show: 'Show'
-      back: 'Back to list'
+  activerecord:
+    attributes:
+      appointment:
+        appointment_date: "Appointment Time"
+        doctor_id: "Doctor"
+      doctor:
+        name: "Name"
+        specialty: "Specialty"
+        phone: "Phone"
+        description: "Description"
+        image: "Image"
 
-    edit:
-      title: 'Edit Appointment'
-      show: 'Show'
-      back: 'Back to list'
+  devise:
+    sessions:
+      signed_in: "You have successfully signed in"
+      signed_out: "You have successfully signed out"
+    failure:
+      not_found_in_database: "Could not find a user with those credentials"
+
+  helpers:
+    submit:
+      create: "Create"
+      update: "Update"
+      submit: "Save"
+
+  errors:
+    messages:
+      record_invalid: "The data entered is invalid"
+      restricted: "Restricted"
+      blank: "Cannot be blank"
+
+  flash:
+    notice:
+      doctor:
+        created: "The doctor was successfully created."
+        updated: "The doctor was successfully updated."
+        destroyed: "The doctor was successfully deleted."
+
+  label:
+    name: "Name"
+    specialty: "Specialty"
+    phone: "Phone"
+    description: "Description"
+    image: "Image"
+
+  doctors:
+    form:
+      name: 'Name'
+      specialty: 'Specialty'
+      phone: 'Phone'
+      description: 'Description'
+      image: 'Photo'
 
     index:
-      show: 'Show'
+      title: 'Our Specialists'
+      new_doctor: 'Add New Doctor'
+      more: 'More Details'
+      appointment: 'Book Appointment'
+
+    show:
+      specialty: 'Specialty'
+      phone: 'Phone'
+      experience: 'Work Experience'
       edit: 'Edit'
+      delete: 'Delete'
+      confirm_delete: 'Are you sure you want to delete?'
+      back_to_list: 'Back to List'
+      reviews_title: 'Current Reviews'
 
-    time:
-      formats:
-        long: "%B %d, %Y, %H:%M" # Example: July 12, 2023, 14:30
+  reviews:
+    form:
+      your_name: "Your Name"
+      body: "Your Review"
+      doctor: "Doctor (leave blank for a site-wide review)"
+    title: "Reviews"
+    show_more: "Show All Reviews"
+    new: "Create New Review"
+    delete: "Delete"
+    confirm_delete: "Are you sure?"
 
-    activerecord:
-      attributes:
-        appointment:
-          appointment_date: "Appointment Time"
-          doctor_id: "Doctor"
+  services:
+    form:
+      name: "Service Name"
+      price: "Price"
+      description: "Description"
+      image: "Image"
+    index:
+      title: "Our Services"
+      price: "Price"
+    new:
+      title: "New Service"
+    show:
+      price: "Price"
+      description: "Description"
+    form:
+      signup: "Sign Up"
+      full_name: "Your Full Name"
+      full_name_placeholder: "Enter your full name"
+      phone: "Your Phone"
+      phone_placeholder: "Enter your phone number"
+      consent: "I agree to %{link}"
+      privacy_policy: "the processing of personal data"

@@ -1,4 +1,4 @@
-<h3>Наши услуги</h3>
+<h3><%= t('.title') %></h3>
 
 <div class="container mt-sm-4">
   <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -8,17 +8,17 @@
           <% if service.image.attached? %>
             <%= image_tag service.image, class: "card-img-top" %>
           <% else %>
-            <p>No image attached</p>
+            <p><%= t('services.index.no_image') %></p>
           <% end %>
           <div class="card-body">
             <h5 class="card-title">
               <%= link_to service.name, service_path(service), class: 'stretched-link' %>
             </h5>
             <p class="card-text"><%= service.description %></p>
-            <p><strong>Цена:</strong> <%= number_to_currency(service.price) %></p>
+            <p><strong><%= t('services.index.price') %>:</strong> <%= number_to_currency(service.price) %></p>
             <% if current_user.admin? %>
-              <%= link_to 'Редактировать', edit_service_path(service), class: 'btn btn-primary' %>
-              <%= button_to 'Удалить', service, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+              <%= link_to t('services.actions.edit'), edit_service_path(service), class: 'btn btn-primary' %>
+              <%= button_to t('services.actions.delete'), service, method: :delete, data: { confirm: t('services.messages.confirm_delete') }, class: 'btn btn-danger' %>
             <% end %>
           </div>
         </div>
@@ -28,5 +28,5 @@
 </div>
 
 <% if current_user.admin? %>
-  <%= link_to 'Новая услуга', new_service_path, class: 'btn btn-success mt-3' %>
+  <%= link_to t('services.new.title'), new_service_path, class: 'btn btn-success mt-3' %>
 <% end %>

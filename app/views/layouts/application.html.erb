@@ -233,13 +233,138 @@
 <!--</footer>-->
 <!--</body>-->
 <!--</html>-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="<%#= I18n.locale %>">-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--  <title><%#= t('clinic.title') %></title>-->
+  <%#= csrf_meta_tags %>
+  <%#= csp_meta_tag %>
+<!--  <link rel="preload" href="<%#= asset_path('application.css') %>" as="style">-->
+  <%#= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%#= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+<!--</head>-->
+<!--<body>-->
+<!--<header>-->
+  <%#= turbo_frame_tag :notices, class: 'notice-group', data: { controller: "notices" } do %>
+    <%# flash.each do |key, value| %>
+      <%# [value].flatten.each do |i| %>
+<!--        <div class="alert alert-<%#= key %>" role="alert">-->
+          <%#= i %>
+<!--        </div>-->
+      <%# end %>
+    <%# end %>
+  <%# end %>
+
+<!--  <div class="container-fluid p-3 bg-dark text-white">-->
+<!--    <div class="d-flex justify-content-between align-items-center">-->
+<!--      <a class="navbar-brand text-white" href="#"><%#= t('clinic.brand') %></a>-->
+
+<!--      <div class="d-flex align-items-center">-->
+        <%# if user_signed_in? %>
+<!--          <div class="dropdown me-3">-->
+<!--            <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">-->
+              <%#= image_tag('user-avatar.png', alt: 'User', size: '24x24') %> <%#= current_user.email %>
+<!--            </button>-->
+<!--            <ul class="dropdown-menu dropdown-menu-end">-->
+<!--              <li><%#= link_to t('clinic.user.profile'), edit_user_registration_path, class: "dropdown-item" %></li>-->
+<!--              <li><%#= link_to t('clinic.user.logout'), destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>-->
+<!--            </ul>-->
+<!--          </div>-->
+        <%# else %>
+          <%#= link_to t('clinic.user.login'), new_user_session_path, class: 'btn btn-outline-light btn-sm me-2' %>
+          <%#= link_to t('clinic.user.signup'), new_user_registration_path, class: 'btn btn-outline-light btn-sm' %>
+        <%# end %>
+
+<!--        <div class="dropdown ms-3">-->
+<!--          <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">-->
+            <%##= image_tag("#{I18n.locale}.png", alt: I18n.locale, size: '24x24') %> <%#= I18n.locale.to_s.upcase %>
+<!--          </button>-->
+<!--          <ul class="dropdown-menu dropdown-menu-end">-->
+<!--            <li>-->
+              <%#= link_to set_locale_path(locale: 'ru'), class: "dropdown-item" do %>
+<!--                <%#= image_tag('ru.png', alt: 'Русский', size: '24x24') %> Русский-->
+              <%# end %>
+<!--            </li>-->
+<!--            <li>-->
+              <%#= link_to set_locale_path(locale: 'en'), class: "dropdown-item" do %>
+<!--                <%#= image_tag('en.png', alt: 'English', size: '24x24') %> English-->
+              <%# end %>
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--    <div class="container-fluid">-->
+<!--      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon"></span>-->
+<!--      </button>-->
+<!--      <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--        <ul class="navbar-nav me-auto">-->
+<!--          <li class="nav-item">-->
+            <%#= link_to t('clinic.navigation.home'), root_path, class: "nav-link text-dark" %>
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+            <%#= link_to t('clinic.navigation.appointments'), appointments_path, class: "nav-link text-dark" %>
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+            <%#= link_to t('clinic.navigation.about'), "#", class: "nav-link text-dark" %>
+<!--          </li>-->
+<!--          <li class="nav-item dropdown">-->
+<!--            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+              <%#= t('clinic.navigation.services') %>
+<!--            </a>-->
+<!--            <ul class="dropdown-menu">-->
+<!--              <li><%#= link_to t('clinic.services.diagnosis'), service_path(1, locale: I18n.locale), class: "dropdown-item" %></li>-->
+<!--              <li><%#= link_to t('clinic.services.eye_treatment'), service_path(2, locale: I18n.locale), class: "dropdown-item" %></li>-->
+<!--              <li><%#= link_to t('clinic.services.eye_surgery'), service_path(3, locale: I18n.locale), class: "dropdown-item" %></li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+            <%#= link_to t('clinic.navigation.doctors'), doctors_path, class: "nav-link text-dark" %>
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+            <%#= link_to t('clinic.navigation.reviews'), reviews_path, class: "nav-link text-dark" %>
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+            <%#= link_to t('clinic.navigation.contacts'), "#", class: "nav-link text-dark" %>
+<!--          </li>-->
+<!--        </ul>-->
+<!--        <form class="d-flex" action="<%#= search_path %>" method="get" role="search">-->
+<!--          <input class="form-control form-control-sm me-2" type="search" name="query" placeholder="<%#= t('clinic.navigation.search_placeholder') %>" aria-label="Search">-->
+<!--          <button class="btn btn-outline-dark btn-sm" type="submit"><%#= t('clinic.navigation.search') %></button>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </nav>-->
+<!--</header>-->
+
+<!--<main>-->
+<!--  <div class="container mt-4">-->
+    <%#= yield %>
+<!--  </div>-->
+<!--</main>-->
+
+<!--<footer class="bg-dark text-white py-3 mt-4">-->
+<!--  <div class="container text-center">-->
+<!--    <p class="mb-0">&copy; <%#= Time.current.year %> <%#= t('clinic.brand') %>. <%#= t('clinic.all_rights_reserved') %></p>-->
+<!--  </div>-->
+<!--</footer>-->
+<!--</body>-->
+<!--</html>-->
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="<%= I18n.locale %>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Офтальмологическая клиника "Видение"</title>
+  <title><%= t('clinic.title') %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <link rel="preload" href="<%= asset_path('application.css') %>" as="style">
@@ -260,7 +385,7 @@
 
   <div class="container-fluid p-3 bg-dark text-white">
     <div class="d-flex justify-content-between align-items-center">
-      <a class="navbar-brand text-white" href="#">Офтальмологическая клиника "Видение"</a>
+      <a class="navbar-brand text-white" href="#"><%= t('clinic.brand') %></a>
 
       <div class="d-flex align-items-center">
         <% if user_signed_in? %>
@@ -269,30 +394,26 @@
               <%= image_tag('user-avatar.png', alt: 'User', size: '24x24') %> <%= current_user.email %>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><%= link_to 'Профиль', edit_user_registration_path, class: "dropdown-item" %></li>
-              <li><%= link_to 'Выйти', destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+              <li><%= link_to t('clinic.user.profile'), edit_user_registration_path, class: "dropdown-item" %></li>
+              <li><%= link_to t('clinic.user.logout'), destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
             </ul>
           </div>
         <% else %>
-          <%= link_to 'Вход', new_user_session_path, class: 'btn btn-outline-light btn-sm me-2' %>
-          <%= link_to 'Регистрация', new_user_registration_path, class: 'btn btn-outline-light btn-sm' %>
+          <%= link_to t('clinic.user.login'), new_user_session_path, class: 'btn btn-outline-light btn-sm me-2' %>
+          <%= link_to t('clinic.user.signup'), new_user_registration_path, class: 'btn btn-outline-light btn-sm' %>
         <% end %>
-
         <div class="dropdown ms-3">
           <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <%= image_tag("#{I18n.locale}.png", alt: I18n.locale, size: '24x24') %> <%= I18n.locale.to_s.upcase %>
           </button>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li>
-              <%= link_to set_locale_path(locale: 'ru'), class: "dropdown-item" do %>
-                <%= image_tag('ru.png', alt: 'Русский', size: '24x24') %> Русский
-              <% end %>
-            </li>
-            <li>
-              <%= link_to set_locale_path(locale: 'en'), class: "dropdown-item" do %>
-                <%= image_tag('en.png', alt: 'English', size: '24x24') %> English
-              <% end %>
-            </li>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+            <% I18n.available_locales.each do |locale| %>
+              <li>
+                <%= link_to url_for(locale: locale), class: "dropdown-item" do %>
+                  <%= image_tag("#{locale}.png", alt: t("languages.#{locale}"), size: '24x24') %> <%= t("languages.#{locale}") %>
+                <% end %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -307,42 +428,47 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <%= link_to 'Главная', root_path, class: "nav-link text-dark" %>
+            <%= link_to t('clinic.navigation.home'), root_path, class: "nav-link text-dark" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Записаться', appointments_path, class: "nav-link text-dark" %>
+            <% if user_signed_in? %>
+              <%= link_to t('clinic.navigation.appointments'), appointments_path, class: "nav-link text-dark" %>
+            <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to 'О клинике',"#", class: "nav-link text-dark" %>
+            <%= link_to t('clinic.navigation.about'), "#", class: "nav-link text-dark" %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Услуги
+              <%= t('clinic.navigation.services') %>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to 'Диагностика зрения', service_path(1), class: "dropdown-item" %></li>
-              <li><%= link_to 'Лечение заболеваний глаз', service_path(2), class: "dropdown-item" %></li>
-              <li><%= link_to 'Операции на глаза', service_path(3), class: "dropdown-item" %></li>
+              <li><%= link_to t('clinic.services.diagnosis'), service_path(1, locale: I18n.locale), class: "dropdown-item" %></li>
+              <li><%= link_to t('clinic.services.eye_treatment'), service_path(2, locale: I18n.locale), class: "dropdown-item" %></li>
+              <li><%= link_to t('clinic.services.eye_surgery'), service_path(3, locale: I18n.locale), class: "dropdown-item" %></li>
             </ul>
           </li>
+
           <li class="nav-item">
-            <%= link_to 'Врачи', doctors_path, class: "nav-link text-dark" %>
+            <%= link_to t('clinic.navigation.doctors'), doctors_path, class: "nav-link text-dark" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Отзывы', reviews_path, class: "nav-link text-dark" %>
+            <%= link_to t('clinic.navigation.reviews'), reviews_path, class: "nav-link text-dark" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Контакты', "#", class: "nav-link text-dark" %>
+            <%= link_to t('clinic.navigation.contacts'), "#", class: "nav-link text-dark" %>
           </li>
         </ul>
         <form class="d-flex" action="<%= search_path %>" method="get" role="search">
-          <input class="form-control form-control-sm me-2" type="search" name="query" placeholder="Поиск" aria-label="Search">
-          <button class="btn btn-outline-dark btn-sm" type="submit">Поиск</button>
+          <input class="form-control form-control-sm me-2" type="search" name="query" placeholder="<%= t('clinic.navigation.search_placeholder') %>" aria-label="Search">
+          <button class="btn btn-outline-dark btn-sm" type="submit"><%= t('clinic.navigation.search') %></button>
         </form>
       </div>
     </div>
   </nav>
 </header>
+
+<%= render 'shared/flash'%>
 
 <main>
   <div class="container mt-4">
@@ -352,7 +478,7 @@
 
 <footer class="bg-dark text-white py-3 mt-4">
   <div class="container text-center">
-    <p class="mb-0">&copy; <%= Time.current.year %> Офтальмологическая клиника "Видение". Все права защищены.</p>
+    <p class="mb-0">&copy; <%= Time.current.year %> <%= t('clinic.brand') %>. <%= t('clinic.all_rights_reserved') %></p>
   </div>
 </footer>
 </body>

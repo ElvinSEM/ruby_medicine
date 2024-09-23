@@ -22,7 +22,6 @@
         <%#= link_to 'Назад к списку', doctors_path, class: 'btn btn-secondary' %>
 <!--      </div>-->
 <!--    </div>-->
-  </div> <!-- Закрытие блока row -->
 
 <!--  <p style="color: green"><%#= notice %></p>-->
 
@@ -38,7 +37,6 @@
   <%# end %>
 <!--</div>-->
 
-
 <div class="container mt-4">
   <% if notice %>
     <div class="alert alert-success" role="alert">
@@ -47,7 +45,6 @@
   <% end %>
 
   <div class="row">
-    <!-- Колонка для изображения -->
     <div class="col-md-4">
       <h1><%= @doctor.name %></h1>
       <% if @doctor.image.attached? %>
@@ -55,30 +52,29 @@
       <% end %>
     </div>
 
-    <!-- Колонка для описания -->
     <div class="col-md-8">
       <div class="mb-3">
-        <p><strong>Специальность:</strong> <%= @doctor.specialty %></p>
-        <p><strong>Телефон:</strong> <%= @doctor.phone %></p>
-        <p><strong>Опыт работы:</strong> <%= @doctor.description %></p>
+        <p><strong><%= t('doctors.show.specialty') %>:</strong> <%= @doctor.specialty %></p>
+        <p><strong><%= t('doctors.show.phone') %>:</strong> <%= @doctor.phone %></p>
+        <p><strong><%= t('doctors.show.experience') %>:</strong> <%= @doctor.description %></p>
       </div>
 
       <% if current_user.admin? || current_user == @doctor %>
         <div class="mb-3">
-          <%= link_to 'Редактировать', edit_doctor_path(@doctor), class: 'btn btn-primary mr-2' %>
-          <%= button_to 'Удалить', @doctor, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
+          <%= link_to t('doctors.show.edit'), edit_doctor_path(@doctor), class: 'btn btn-primary mr-2' %>
+          <%= button_to t('doctors.show.delete'), @doctor, method: :delete, data: { confirm: t('doctors.show.confirm_delete') }, class: 'btn btn-danger' %>
         </div>
       <% end %>
 
       <div>
-        <%= link_to 'Назад к списку', doctors_path, class: 'btn btn-secondary' %>
+        <%= link_to t('doctors.show.back_to_list'), doctors_path, class: 'btn btn-secondary' %>
       </div>
     </div>
-  </div> <!-- Закрытие блока row -->
+  </div>
 
   <hr>
 
-  <h2 class="mt-4">Текущие отзывы:</h2>
+  <h2 class="mt-4"><%= t('doctors.show.reviews_title') %></h2>
   <% @doctor.reviews.each do |review| %>
     <div class="card mb-4">
       <div class="card-body">
