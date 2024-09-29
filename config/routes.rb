@@ -83,6 +83,8 @@ Rails.application.routes.draw do
       end
     end
     resources :services
+    resources :appointments
+    resources :services, only: [:index, :show]
 
     resources :doctors do
       resources :reviews, only: [:index, :new, :create, :destroy]
