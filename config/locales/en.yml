@@ -97,21 +97,6 @@ en:
       back_to_list: 'Back to list'
       cancel_confirmation: 'Are you sure you want to cancel the appointment?'
 
-<<<<<<< HEAD
-
-  activerecord:
-    attributes:
-      appointment:
-        appointment_date: "Appointment Time"
-        doctor_id: "Doctor"
-      doctor:
-        name: "Name"
-        specialty: "Specialty"
-        phone: "Phone"
-        description: "Description"
-        image: "Image"
-
-=======
   activerecord:
     attributes:
       appointment:
