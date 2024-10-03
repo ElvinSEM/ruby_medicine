@@ -1,23 +1,8 @@
-<!--<h1>Review</h1>-->
 
-<!--<p>-->
-<!--  <strong>Name:</strong>-->
-  <%#= @review.name %>
-<!--</p>-->
-
-<!--<p>-->
-<!--  <strong>Body:</strong>-->
-  <%#= @review.body %>
-<!--</p>-->
-<%#= link_to 'Delete Review', review_path(@review), method: :delete, data: { confirm: 'Are you sure?' } %>
-
-<!-- app/views/reviews/_form.html.erb -->
 <%= form_with(model: review, local: true) do |form| %>
   <% if review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= t('errors.title', count: review.errors.count) %> <%= t('errors.messages.prohibited') %></h2> // TODO:
-
-
+      <h2><%= t('reviews.errors.messages.prohibited', count: review.errors.count) %> <%= t('reviews.errors.messages.prohibited') %></h2>
       <ul>
         <% review.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -29,7 +14,7 @@
   <% if user_signed_in? %>
     <%= form.hidden_field :name, value: current_user.username %>
     <div class="form-group">
-      <%= form.label :name, t('reviews.form.your_name') %>
+      <%= form.label :name, t('reviews.form.name') %>
       <input type="text" value="<%= current_user.username %>" class="form-control" readonly/>
     </div>
   <% else %>
@@ -45,12 +30,16 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :doctor_id, t('reviews.form.doctor') %>
+    <%= form.label :doctor_id, t('reviews.form.doctor_id') %>
     <%= form.collection_select :doctor_id, Doctor.all, :id, :name, include_blank: true, class: 'form-control' %>
+  </div>
+
+  <div class="form-group form-check">
+    <%= form.check_box :site_review, class: 'form-check-input' %>
+    <%= form.label :site_review, t('reviews.form.site_review'), class: 'form-check-label' %>
   </div>
 
   <div class="actions">
     <%= form.submit t('helpers.submit.create'), class: 'btn btn-primary' %>
   </div>
 <% end %>
-

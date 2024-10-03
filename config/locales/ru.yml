@@ -166,14 +166,25 @@ ru:
 
   reviews:
     form:
-      your_name: "Ваше имя"
-      body: "Ваш отзыв"
-      doctor: "Доктор (оставьте пустым для отзыва о сайте)"
+      name: "Имя"
+      body: "Текст отзыва"
+      doctor_id: "Врач (оставьте пустым для отзыва о сайте)"
+      site_review: "Отзыв о сайте"
     title: "Отзывы"
     show_more: "Показать все отзывы"
     new: "Создать новый отзыв"
-    delete: "Удалить"
-    confirm_delete: "Вы уверены?"
+    create: "Отзыв успешно создан."
+
+    actions:
+      delete: "Удалить"
+      messages:
+        confirm_delete: "Вы уверены, что хотите удалить это?"
+        reviews:
+          for_doctor: "Отзывы о этом враче"
+    errors:
+      title: "Ошибки в вашей форме"
+      messages:
+        prohibited: "Это поле запрещено"
 
   services:
     form:
@@ -181,11 +192,20 @@ ru:
       price: "Цена"
       description: "Описание"
       image: "Изображение"
+      errors:
+        title: "Произошли ошибки"
+        messages:
+          prohibited: "%{count} ошибок не позволили сохранить %{model}:"
+
     index:
       title: "Наши услуги"
       price: "Цена"
+      no_image: "Изображение недоступно"
+    messages:
+          confirm_delete: "Вы уверены, что хотите удалить эту услугу?"
     new:
       title: "Новая услуга"
+      back: "Назад"
     show:
       price: "Цена"
       description: "Описание"
@@ -197,3 +217,34 @@ ru:
       phone_placeholder: "Введите ваш телефон"
       consent: "Согласен на %{link}"
       privacy_policy: "обработку персональных данных"
+    actions:
+      edit: "Редактировать"
+      delete: "Удалить"
+      back_to_list: "Назад к списку"
+      submit: "Отправить"
+      messages:
+        confirm_delete: "Вы уверены, что хотите удалить этот элемент?"
+    edit:
+      edit:
+        title: "Редактировать услугу"
+        actions:
+          back: "Назад"
+      errors:
+        title: "Произошли ошибки"
+        messages:
+          prohibited: "%{count} ошибок не позволили сохранить %{model}:"
+  breadcrumbs:
+    home: "Главная"
+    services: "Услуги"
+
+    doctors:
+      index: "Врачи"
+      show: "Детали врача"
+      edit: "Редактировать врача"
+      new: "Новый врач"
+
+    reviews:
+      index: "Отзывы"
+      new: "Новый отзыв"
+      edit: "Редактировать отзыв"
+      show: "Просмотр отзыва"

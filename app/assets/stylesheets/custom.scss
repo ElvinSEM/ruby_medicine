@@ -517,3 +517,27 @@ footer p {
     font-size: 0.75rem;
   }
 }
+
+
+.breadcrumbs {
+  font-size: 0.9rem; /* Небольшой размер текста */
+  color: #ffffff; /* Белый цвет текста */
+}
+
+.breadcrumbs a {
+  color: #00aced; /* Цвет ссылок */
+  text-decoration: none; /* Без подчеркивания */
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.breadcrumbs > span {
+  margin: 0 0.3rem; /* Отступы между элементами */
+}
+
+.breadcrumbs .current {
+  font-weight: bold; /* Выделение текущей страницы */
+  color: #ccc; /* Более мягкий оттенок текущего элемента */
+}

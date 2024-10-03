@@ -168,14 +168,25 @@ en:
 
   reviews:
     form:
-      your_name: "Your Name"
-      body: "Your Review"
-      doctor: "Doctor (leave blank for a site-wide review)"
+      name: "Name"
+      body: "Review Body"
+      doctor_id: "Doctor(leave blank for a site-wide review)"
+      site_review: "Site Review"
     title: "Reviews"
     show_more: "Show All Reviews"
     new: "Create New Review"
-    delete: "Delete"
-    confirm_delete: "Are you sure?"
+    create: "Review successfully created."
+
+    actions:
+      delete: "Delete"
+      messages:
+        confirm_delete: "Are you sure you want to delete this?"
+        reviews:
+          for_doctor: "Reviews for this Doctor"
+    errors:
+      title: "There were errors with your submission"
+      messages:
+        prohibited: "This field is prohibited"
 
   services:
     form:
@@ -183,11 +194,19 @@ en:
       price: "Price"
       description: "Description"
       image: "Image"
+      errors:
+        title: "Errors occurred"
+        messages:
+          prohibited: "%{count} errors prohibited this %{model} from being saved:"
     index:
       title: "Our Services"
       price: "Price"
+      no_image: "No image available"
+    messages:
+      confirm_delete: "Are you sure you want to delete this service?"
     new:
       title: "New Service"
+      back: "Back"
     show:
       price: "Price"
       description: "Description"
@@ -199,3 +218,30 @@ en:
       phone_placeholder: "Enter your phone number"
       consent: "I agree to %{link}"
       privacy_policy: "the processing of personal data"
+    actions:
+      edit: "Edit"
+      delete: "Delete"
+      back_to_list: "Back to list"
+      submit: "Submit"
+      messages:
+        confirm_delete: "Are you sure you want to delete this item?"
+    edit:
+      edit:
+        title: "Edit Service"
+        actions:
+          back: "Back"
+  breadcrumbs:
+    home: "Home"
+    services: "Service"
+
+    doctors:
+      index: "Doctors"
+      show: "Doctor Details"
+      edit: "Edit Doctor"
+      new: "New Doctor"
+
+    reviews:
+      index: "Reviews"
+      new: "New Review"
+      edit: "Edit Review"
+      show: "View Review"

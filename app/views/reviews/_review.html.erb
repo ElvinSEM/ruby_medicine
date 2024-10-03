@@ -1,11 +1,11 @@
 <!-- app/views/reviews/_review.html.erb -->
 <% if policy(review).destroy? %>
-  <%= button_to t('actions.delete'), review_path(review, locale: I18n.locale), method: :delete, data: { confirm: t('messages.confirm_delete') }, class: 'btn btn-danger' %> // TODO
+  <%= button_to t('reviews.actions.delete'), review_path(review, locale: I18n.locale), method: :delete, data: { confirm: t('reviews.actions.messages.confirm_delete') }, class: 'btn btn-danger' %> // TODO
 <% end %>
 
 <% if review.doctor %>
   <li class="list-group-item">
-    <h5><%= t('reviews.for_doctor') %> <%= link_to review.doctor.name, doctor_path(review.doctor, locale: I18n.locale) %></h5>
+    <h5><%= t('reviews.actions.messages.reviews.for_doctor') %> <%= link_to review.doctor.name, doctor_path(review.doctor, locale: I18n.locale) %></h5>
     <p><%= review.body %></p>
   </li>
 <% else %>

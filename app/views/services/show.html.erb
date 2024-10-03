@@ -1,24 +1,3 @@
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div class="col-md-4">-->
-<!--      <h1><%#= @service.name %></h1>-->
-      <%# if @service.image.attached? %>
-        <%#= image_tag @service.image, alt: @service.name, class: 'img-fluid' %>
-      <%# end %>
-<!--    </div>-->
-<!--    <div class="col-md-8">-->
-<!--      <p><strong>Цена:</strong> <%#= number_to_currency(@service.price) %></p>-->
-<!--      <p><strong>Описание:</strong></p>-->
-<!--      <p><%#= @service.description %></p>-->
-      <%# if current_user.admin? %>
-        <%#= link_to 'Редактировать', edit_service_path(@service), class: 'btn btn-primary' %>
-        <%#= button_to 'Удалить', @service, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' %>
-      <%# end %>
-      <%#= link_to 'Назад к списку', services_path, class: 'btn btn-secondary' %>
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-4">
@@ -34,10 +13,10 @@
           <p><strong><%= t('services.show.description') %>:</strong></p>
           <p><%= @service.description %></p>
           <% if current_user.admin? %>
-            <%= link_to t('actions.edit'), edit_service_path(@service), class: 'btn btn-primary mr-2' %>
-            <%= button_to t('actions.delete'), @service, method: :delete, data: { confirm: t('messages.confirm_delete') }, class: 'btn btn-danger' %>
+            <%= link_to t('services.actions.edit'), edit_service_path(@service), class: 'btn btn-primary mr-2' %>
+            <%= button_to t('services.actions.delete'), @service, method: :delete, data: { confirm: t('services.actions.messages.confirm_delete') }, class: 'btn btn-danger' %>
           <% end %>
-          <%= link_to t('actions.back_to_list'), services_path, class: 'btn btn-secondary mt-3' %>
+          <%= link_to t('services.actions.back_to_list'), services_path, class: 'btn btn-secondary mt-3' %>
         </div>
       </div>
     </div>
@@ -60,7 +39,7 @@
               <input type="checkbox" name="acceptance-rules" class="form-check-input" id="acceptance-rules" checked>
               <label class="form-check-label" for="acceptance-rules"><%= t('services.form.consent', link: link_to(t('services.form.privacy_policy'), '/soglasie-na-obrabotku-personalnyh-dannyh/', target: '_blank')) %></label>
             </div>
-            <button type="submit" class="btn btn-primary btn-block"><%= t('actions.submit') %></button>
+            <button type="submit" class="btn btn-primary btn-block"><%= t('services.actions.submit') %></button>
           </form>
         </div>
       </div>

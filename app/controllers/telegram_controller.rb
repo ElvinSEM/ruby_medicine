@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+# Controller responsible for handling Telegram bot interactions
 class TelegramController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:save_user_id]
 
@@ -10,12 +12,12 @@ class TelegramController < ApplicationController
     if user
       if user.telegram_chat_id.nil?
         user.update(telegram_chat_id: telegram_chat_id)
-        render plain: "Telegram chat ID успешно сохранен", status: :ok
+        render plain: 'Telegram chat ID успешно сохранен', status: :ok
       else
-        render plain: "Telegram chat ID уже существует для данного пользователя", status: :conflict
+        render plain: 'Telegram chat ID уже существует для данного пользователя', status: :conflict
       end
     else
-      render plain: "Пользователь с данным номером телефона не найден", status: :not_found
+      render plain: 'Пользователь с данным номером телефона не найден', status: :not_found
     end
   end
 end

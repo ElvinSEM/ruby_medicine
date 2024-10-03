@@ -1,37 +1,43 @@
 class User < ApplicationRecord
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :validatable,
-           :omniauthable, omniauth_providers: %i[ google_oauth2]
+           :omniauthable, omniauth_providers: %i[google_oauth2]
 
+    # Определение ролей
+    enum role: { user: 1, admin: 2 }
+
+    # Связи с другими моделями
     has_many :appointments, dependent: :destroy
     has_many :doctors, through: :appointments
     has_many :reviews
-    has_many :doctors, through: :appointments
 
-    # validates :phone, presence: true, uniqueness: true #format: { with: /A+d{10,15}z/ }
-    # validates :username, presence: true
-    validates :phone, presence: true, uniqueness: true unless Rails.env.test?
+    # Валидации
+    validates :phone, presence: true, uniqueness: true, unless: -> { Rails.env.test? }
     validates :email, presence: true, uniqueness: true
     validates :username, presence: true
 
+    # Проверка роли пользователя
     def admin?
         role == 'admin'
     end
 
+    # Метод для создания пользователя через Google OAuth
     def self.from_google(auth)
         puts "from_google called with auth: #{auth.inspect}"
 
+        # Поиск пользователя по uid и провайдеру
         user = find_by(provider: auth.provider, uid: auth.uid)
         return user if user
 
-        # Используем `new` вместо `create` чтобы сначала инициализировать объект
+        # Инициализация нового пользователя
         user = new(
           provider: auth.provider,
           uid: auth.uid,
           email: auth.info.email,
           password: Devise.friendly_token[0, 20],
-          username: auth.info.username,
-          phone: '0000000000'  # Значение по умолчанию для phone
+          username: auth.info.name || auth.info.email,  # Используем имя или email для username
+          phone: '0000000000',  # Значение по умолчанию для phone
+          role: :user  # Назначаем роль user по умолчанию
         )
 
         puts "User initialized: #{user.inspect}" # Отладочный вывод
@@ -46,5 +52,4 @@ class User < ApplicationRecord
 
         user
     end
-
 end

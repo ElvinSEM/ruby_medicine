@@ -6,6 +6,7 @@ gem "rails", "~> 7.0.8"
 
 gem 'bcrypt'
 gem "bootsnap", require: false
+gem 'breadcrumbs_on_rails'
 gem 'devise'
 gem 'dotenv-rails',groups: [:development, :test]
 gem "jsbundling-rails"

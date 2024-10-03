@@ -4,14 +4,16 @@ class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[ show edit update destroy ]
   before_action :authorize_doctor!
   after_action :verify_authorized, except: [:index, :show]
+  before_action :add_default_breadcrumbs, only: [:index, :new, :edit, :show]
 
-  # GET /doctors
   def index
     @doctors = Doctor.all
   end
 
   # GET /doctors/1
   def show
+    add_breadcrumb @doctor.name, doctor_path(@doctor)  # Отображаем имя доктора в хлебных крошках
+
     authorize @doctor
     @doctor = Doctor.find(params[:id])
     respond_to do |format|
@@ -75,8 +77,17 @@ class DoctorsController < ApplicationController
   def authorize_doctor!
     authorize(@doctor || Doctor)
   end
-  # def check_admin
-  #   redirect_to root_path, alert: 'Доступ разрешен только администраторам' unless current_user.admin?
+  # Метод для добавления стандартных хлебных крошек
+  def add_default_breadcrumbs
+    add_breadcrumb I18n.t('breadcrumbs.home'), root_path
+    add_breadcrumb I18n.t('breadcrumbs.doctors.index'), doctors_path if action_name == 'index'
+    add_breadcrumb I18n.t('breadcrumbs.doctors.new'), new_doctor_path if action_name == 'new'
+    add_breadcrumb I18n.t('breadcrumbs.doctors.edit'), edit_doctor_path(@doctor) if action_name == 'edit'
+    add_breadcrumb @doctor.name, doctor_path(@doctor) if action_name == 'show'
+  end
+  # Устанавливаем хлебные крошки для действий show, edit и new
+  # def set_breadcrumbs
+  #   add_breadcrumb t('breadcrumbs.home'), root_path
+  #   add_breadcrumb t('breadcrumbs.doctors.index'), doctors_path
   # end
-
 end

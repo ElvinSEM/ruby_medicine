@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
+# Controller for managing users in the application.
+# Provides actions like creating, updating, showing, and deleting users.
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users
   def index
@@ -10,9 +14,9 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     # Если у пользователя нет привязанного telegram_chat_id, предлагается привязать
-    if @user.telegram_chat_id.blank?
-      @telegram_bot_link = "https://t.me/CLINIC777_bot"
-    end
+    return unless @user.telegram_chat_id.blank?
+
+    @telegram_bot_link = 'https://t.me/CLINIC777_bot'
   end
 
   # GET /users/new
@@ -21,16 +25,15 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /users
   def create
     @user = User.new(user_params)
     if @user.save
       UserMailer.welcome_email(@user).deliver_now
-      @telegram_bot_link = "https://t.me/CLINIC777_bot"
-      redirect_to @user, notice: "Пользователь успешно создан."
+      @telegram_bot_link = 'https://t.me/CLINIC777_bot'
+      redirect_to @user, notice: 'Пользователь успешно создан.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,7 +42,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "User был успешно обновлен.", status: :see_other
+      redirect_to @user, notice: 'User был успешно обновлен.', status: :see_other
     else
       render :edit, status: :unprocessable_entity
     end
@@ -48,43 +51,17 @@ class UsersController < ApplicationController
   # DELETE /users/1
   def destroy
     @user.destroy
-    redirect_to root_path, notice: "User был успешно удален.", status: :see_other
+    redirect_to root_path, notice: 'User был успешно удален.', status: :see_other
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
-
-#
-# class UsersController < ApplicationController
-#   before_action :authenticate_user!, only: [:index, :show]
-#   before_action :set_user, only: [:show]
-#
-#   # GET /users
-#   # Этот метод может использоваться для отображения списка пользователей,
-#   # если такая функциональность требуется в вашем приложении.
-#   def index
-#     @users = User.all
-#   end
-#
-#   # GET /users/1
-#   # Этот метод может использоваться для просмотра профилей пользователей,
-#   # если такая функциональность требуется в вашем приложении.
-#   def show
-#   end
-#
-#   private
-#
-#   # Use callbacks to share common setup or constraints between actions.
-#   def set_user
-#     @user = User.find(params[:id])
-#   end
-    end
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
+  end
 end

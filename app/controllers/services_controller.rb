@@ -1,16 +1,23 @@
+# frozen_string_literal: true
+#
+# ServicesController manages the creation, display, and deletion of services.
+# It ensures that only authenticated users can manage services.
 class ServicesController < ApplicationController
-  before_action :authenticate_user! # Предполагаем, что используется Devise для аутентификации
-  before_action :set_service, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_admin!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show] # Предполагаем, что используется Devise для аутентификации
+  before_action :set_service, only: %i[show edit update destroy]
+  before_action :authorize_admin!, only: %i[new create edit update destroy]
+  add_breadcrumb I18n.t('breadcrumbs.home'), :root_path
+  add_breadcrumb I18n.t('breadcrumbs.services'), :services_path, only: [:index, :show]
 
   # Обработка ошибки ActiveRecord::RecordNotFound
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   def index
     @services = Service.all
   end
 
   def show
+    add_breadcrumb @service.name, service_path(@service)
   end
 
   def new
@@ -48,6 +55,7 @@ class ServicesController < ApplicationController
   end
 
   private
+
   def set_service
     @service = Service.find(params[:id])
   end
@@ -61,9 +69,8 @@ class ServicesController < ApplicationController
     redirect_to root_path, alert: 'Доступ разрешен только администраторам' unless current_user.admin?
   end
 
-  def record_not_found
-    flash[:alert] = 'Service not found.'
-    redirect_to services_url
-  end
-
+  # def record_not_found
+  #   flash[:alert] = 'Service not found.'
+  #   redirect_to services_url
+  # end
 end
