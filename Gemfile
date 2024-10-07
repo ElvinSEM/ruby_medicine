@@ -36,6 +36,7 @@ gem 'telegram-bot-ruby', '~> 1.0'
 
 group :development, :test do
   gem 'omniauth-test'
+  gem 'exception-track', '~> 1.3'
 
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot'
