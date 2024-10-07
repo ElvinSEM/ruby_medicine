@@ -458,7 +458,7 @@ DEPENDENCIES
   pry
   puma
   pundit
-  rails
+  rails (= 7.0.8.4)
   rails-controller-testing
   rails-i18n
   redis
@@ -479,4 +479,4 @@ RUBY VERSION
    ruby 3.1.0p0
 
 BUNDLED WITH
-   2.4.22
+   2.5.21
