@@ -5,7 +5,7 @@ class AppointmentReminderJob < ApplicationJob
   def perform
     Rails.logger.info "AppointmentReminderJob started at #{Time.current}"
 
-    appointments = Appointment.where(start_time: (Time.current.in_time_zone('Moscow') + 1.hour).beginning_of_hour..(Time.current.in_time_zone('Moscow') + 1.hour).end_of_hour)
+    appointments = Appointment.where(appointment_date: (Time.current.in_time_zone('Moscow') + 1.hour).beginning_of_hour..(Time.current.in_time_zone('Moscow') + 1.hour).end_of_hour)
     Rails.logger.info "Found #{appointments.count} appointments for reminders"
 
     appointments.each do |appointment|
@@ -14,12 +14,12 @@ class AppointmentReminderJob < ApplicationJob
         next
       end
 
-      if appointment.start_time.present? && appointment.doctor.present?
+      if appointment.appointment_date.present? && appointment.doctor.present?
         Rails.logger.info "Sending reminder for appointment #{appointment.id} with doctor #{appointment.doctor.name}"
 
         user = appointment.user
         doctor = appointment.doctor
-        message = "🔔 *Напоминание!* 🔔\n\n🗓️ У вас запись на прием к врачу *#{doctor.name}*\n\n📅 *Дата:* #{appointment.start_time.strftime('%d.%m.%Y')} \n🕒 *Время:* #{appointment.start_time.strftime('%H:%M')}\n\nПожалуйста, не забудьте! ✅"
+        message = "🔔 *Напоминание!* 🔔\n\n🗓️ У вас запись на прием к врачу *#{doctor.name}*\n\n📅 *Дата:* #{appointment.appointment_date.strftime('%d.%m.%Y')} \n🕒 *Время:* #{appointment.appointment_date.strftime('%H:%M')}\n\nПожалуйста, не забудьте! ✅"
         TelegramService.call(user: user, message: message)
       else
         Rails.logger.warn "Skipping reminder for appointment #{appointment.id} due to missing data"

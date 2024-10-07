@@ -16,7 +16,7 @@
   <% @appointments.each do |appointment| %>
     <tr>
       <td><%= appointment.doctor.name %></td>
-      <td><%= l appointment.start_time, format: :long %></td>
+      <td><%= l appointment.appointment_date, format: :long %></td>
       <td><%= appointment.problem_description%></td>
       <td>
         <div class="card-footer d-flex justify-content-start">

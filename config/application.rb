@@ -25,6 +25,11 @@ module HospitalApp
     Sidekiq.configure_client do |config|
       config.redis = { url: ENV['REDIS_URL'] || 'redis://localhost:6379/0' }
     end
+
+    config.after_initialize do
+      # Запускаем воркер для Telegram бота при старте приложения
+      TelegramBotWorker.perform_async
+    end
   end
 
     # Configuration for the application, engines, and railties goes here.

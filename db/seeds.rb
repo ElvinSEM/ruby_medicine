@@ -120,6 +120,8 @@
 #
 
 require 'faker'
+# db/seeds.rb
+
 
 # Создание администратора
 admin = User.create!(
@@ -131,7 +133,7 @@ admin = User.create!(
 )
 
 # Создание пользователей
-users = 9.times.map do |i|
+users = 9.times.map do
   User.create!(
     email: Faker::Internet.email,
     password: 'password',
@@ -149,8 +151,7 @@ doctors = 5.times.map do
   Doctor.create!(
     name: Faker::Name.name,
     specialty: Faker::Job.field,
-    phone: Faker::PhoneNumber.phone_number,
-    description: Faker::Lorem.paragraph
+    phone: Faker::PhoneNumber.phone_number
   )
 end
 
@@ -163,21 +164,25 @@ services = 10.times.map do
   )
 end
 
-# Создание записей на прием
-problems = ["Проблема или заболевание", "Постоянно устают глаза", "Близорукость", "Дальнозоркость", "Глаукома", "Катаракта", "Конъюнктивит", "Другое"]
+# Создание приемов
+doctors = Doctor.all
+users = User.all
 
-users.each do |user|
-  doctors.each do |doctor|
-    problems.each do |problem|
-      Appointment.create!(
-        info: problem,
-        doctor: doctor,
-        user: user,
-        start_time: DateTime.now + rand(1..30).days  # Случайное время в пределах следующих 30 дней
-      )
-    end
-  end
+statuses = %w[pending confirmed cancelled]
+
+5.times do
+  Appointment.create!(
+    appointment_date: Date.today + rand(1..30).days,
+    status: statuses.sample,
+    doctor_id: doctors.sample.id,
+    user_id: users.sample.id,
+    problem_description: "Проблема или заболевание",
+    age: rand(20..80),
+    info: "Дополнительная информация"
+  )
 end
+
+puts "Заполнено #{Appointment.count} приемов."
 
 # Создание отзывов
 doctors.each do |doctor|

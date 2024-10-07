@@ -4,7 +4,7 @@ class User < ApplicationRecord
            :omniauthable, omniauth_providers: %i[google_oauth2]
 
     # Определение ролей
-    enum role: { user: 1, admin: 2 }
+    enum role: { user: '1', admin: '2' }
 
     # Связи с другими моделями
     has_many :appointments, dependent: :destroy
@@ -15,11 +15,6 @@ class User < ApplicationRecord
     validates :phone, presence: true, uniqueness: true, unless: -> { Rails.env.test? }
     validates :email, presence: true, uniqueness: true
     validates :username, presence: true
-
-    # Проверка роли пользователя
-    def admin?
-        role == 'admin'
-    end
 
     # Метод для создания пользователя через Google OAuth
     def self.from_google(auth)

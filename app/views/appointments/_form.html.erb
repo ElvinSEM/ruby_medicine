@@ -1,131 +1,5 @@
 
-<%#= form_with(model: @appointment) do |form| %>
-<!--  <div class="field">-->
-    <%#= form.label :age, "Ваш возраст", class: 'form-label' %>
-    <%#= form.text_field :age, placeholder: "Ваш возраст", id: "appointment_age", class: 'form-control' %>
-<!--  </div>-->
-
-<!--  <div class="mb-3">-->
-    <%#= form.label :problem_id, "Проблема или заболевание" %>
-    <%#= form.select :problem_id, Appointment::PROBLEMS.map { |k, v| [v, k] }, id: "appointment_problem_id" %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :info, "Доп. информация" %>
-    <%#= form.text_area :info, placeholder: "Доп. информация", id: "appointment_info" %>
-<!--  </div>-->
-
-<!--  <div class="field">-->
-    <%#= form.label :start_time, "Выберите дату и время" %>
-    <%#= form.datetime_select :start_time, start_year: Date.today.year, end_year: Date.today.year, minute_step: 30, default: { hour: 8 } %>
-<!--  </div>-->
-
-  <%#= form.label :status, "Status", style: "display: block" %>
-  <%#= form.text_field :status, id: "appointment_status" %>
-
-<!--  <div class="mb-3">-->
-    <%#= form.label :doctor, style: "display: block" %>
-    <%#= @doctors.nil? ? 'Doctors not loaded' : 'Doctors' %>
-    <%#= form.collection_select :doctor_id, @doctors, :id, :name, prompt: 'Выберите врача', id: "appointment_doctor_id"  if @doctors %>
-<!--  </div>-->
-
-<!--  <div class="mb-3">-->
-    <%#= form.submit 'Записаться', class: 'btn btn-primary' %>
-<!--  </div>-->
-<%# end %>
-
-
-<%#= form_with(model: @appointment, local: true, class: "needs-validation", novalidate: true) do |form| %>
-<!--  <div class="row mb-3">-->
-<!--    <div class="col-md-6">-->
-      <%#= form.label :age, "Ваш возраст", class: 'form-label' %>
-      <%#= form.text_field :age, placeholder: "Ваш возраст", id: "appointment_age", class: 'form-control', required: true %>
-<!--      <div class="invalid-feedback">-->
-<!--        Пожалуйста, введите ваш возраст.-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="col-md-6">-->
-      <%#= form.label :problem_id, "Проблема или заболевание", class: 'form-label' %>
-      <%#= form.select :problem_id, Appointment::PROBLEMS.map { |k, v| [v, k] }, { prompt: 'Выберите проблему или заболевание' }, class: 'form-select', id: "appointment_problem_id", required: true %>
-<!--      <div class="invalid-feedback">-->
-<!--        Пожалуйста, выберите проблему или заболевание.-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="mb-3">-->
-    <%#= form.label :info, "Доп. информация", class: 'form-label' %>
-    <%#= form.text_area :info, placeholder: "Доп. информация", id: "appointment_info", class: 'form-control' %>
-<!--  </div>-->
-
-<!--  <div class="row mb-3">-->
-<!--    <div class="col-md-6">-->
-      <%#= form.label :start_date, "Выберите дату", class: 'form-label' %>
-      <%#= form.date_select :start_time, order: [:day, :month, :year], default: Date.today, class: 'form-control' %>
-<!--      <div class="invalid-feedback">-->
-<!--        Пожалуйста, выберите дату.-->
-<!--      </div>-->
-<!--    </div>-->
-
-<!--    <div class="col-md-6">-->
-      <%#= form.label :start_time, "Выберите время", class: 'form-label' %>
-      <%#= form.time_select :start_time, minute_step: 30, default: { hour: 8 }, class: 'form-control' %>
-<!--      <div class="invalid-feedback">-->
-<!--        Пожалуйста, выберите время.-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="mb-3">-->
-    <%#= form.label :doctor_id, "Выберите врача", class: 'form-label' %>
-    <%#= form.collection_select :doctor_id, @doctors, :id, :name, { prompt: 'Выберите врача' }, class: 'form-select', id: "appointment_doctor_id", required: true if @doctors %>
-<!--    <div class="invalid-feedback">-->
-<!--      Пожалуйста, выберите врача.-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="mb-3">-->
-    <%#= form.submit 'Записаться', class: 'btn btn-primary' %>
-<!--  </div>-->
-<%# end %>
-
-<!--<script>-->
-<!--    // JavaScript for Bootstrap form validation-->
-<!--    (function () {-->
-<!--        'use strict'-->
-
-<!--        // Fetch all the forms we want to apply custom Bootstrap validation styles to-->
-<!--        var forms = document.querySelectorAll('.needs-validation')-->
-
-<!--        // Loop over them and prevent submission-->
-<!--        Array.prototype.slice.call(forms)-->
-<!--            .forEach(function (form) {-->
-<!--                form.addEventListener('submit', function (event) {-->
-<!--                    if (!form.checkValidity()) {-->
-<!--                        event.preventDefault()-->
-<!--                        event.stopPropagation()-->
-<!--                    }-->
-
-<!--                    form.classList.add('was-validated')-->
-<!--                }, false)-->
-<!--            })-->
-<!--    })()-->
-<!--</script>-->
-
 <%= form_with(model: @appointment, local: true, class: "needs-validation", novalidate: true) do |form| %>
-<!--   Возраст (закомментировано, если нужно вернуть) -->
-<!--    <div class="row mb-3">-->
-<!--    <div class="col-md-6">-->
-      <%#= form.label :age, t('.age_label'), class: 'form-label' %>
-  <%#= form.text_field :age, placeholder: t('.age_placeholder'), id: "appointment_age", class: 'form-control', required: true %>
-<!--      <div class="invalid-feedback">-->
-        <%#= t('.age_error') %>
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
   <div class="row mb-3">
     <div class="col-md-6">
       <%= form.label :problem_id, t('.problem_label'), class: 'form-label' %>
@@ -143,10 +17,10 @@
 
   <div class="row mb-3">
     <div class="col-md-6">
-      <%= form.label :start_time, t('.start_time_label'), class: 'form-label' %>
-      <%= form.datetime_select :start_time, default: DateTime.now.in_time_zone('Moscow'), include_blank: false, minute_step: 30, class: 'form-control' %>
+      <%= form.label :appointment_date, t('.appointment_date_label'), class: 'form-label' %>
+      <%= form.datetime_select :appointment_date, default: DateTime.now.in_time_zone('Moscow'), include_blank: false, minute_step: 30, class: 'form-control' %>
       <div class="invalid-feedback">
-        <%= t('.start_time_error') %>
+        <%= t('.appointment_date_error') %>
       </div>
     </div>
 

@@ -1,53 +1,3 @@
-<!--<div class="container mt-5">-->
-<!--  <div class="row justify-content-center">-->
-<!--    <div class="col-md-6">-->
-      <%#= form_with(model: doctor, local: true, class: 'needs-validation') do |form| %>
-        <%# if doctor.errors.any? %>
-<!--          <div id="error_explanation" class="alert alert-danger">-->
-<!--            <h2><%#= pluralize(doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>-->
-<!--            <ul>-->
-              <%# doctor.errors.full_messages.each do |message| %>
-<!--                <li><%#= message %></li>-->
-              <%# end %>
-<!--            </ul>-->
-<!--          </div>-->
-        <%# end %>
-
-<!--        <div class="form-group">-->
-          <%#= form.label :name, class: 'form-label' %>
-          <%#= form.text_field :name, class: 'form-control' %>
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-          <%#= form.label :specialty, class: 'form-label' %>
-          <%#= form.text_field :specialty, class: 'form-control' %>
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-          <%#= form.label :phone, class: 'form-label' %>
-          <%#= form.text_field :phone, class: 'form-control' %>
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-          <%#= form.label :description, class: 'form-label' %>
-          <%#= form.text_area :description, class: 'form-control' %>
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-          <%#= form.label :image, class: 'form-label' %>
-          <%#= form.file_field :image, class: 'form-control-file' %>
-<!--        </div>-->
-
-<!--        <div class="form-group">-->
-          <%#= form.submit 'Save', class: 'btn btn-primary' %>
-<!--        </div>-->
-      <%# end %>
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-<div class="container mt-5">
-  <div class="col-md-6">
     <%= form_with(model: doctor, local: true, class: 'needs-validation') do |form| %>
       <% if doctor.errors.any? %>
         <div id="error_explanation" class="alert alert-danger">
@@ -89,5 +39,4 @@
         <%= form.submit t('helpers.submit.create'), class: 'btn btn-primary' %>
       </div>
     <% end %>
-  </div>
-</div>
+

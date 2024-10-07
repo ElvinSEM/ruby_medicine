@@ -15,7 +15,6 @@ class DoctorsController < ApplicationController
     add_breadcrumb @doctor.name, doctor_path(@doctor)  # Отображаем имя доктора в хлебных крошках
 
     authorize @doctor
-    @doctor = Doctor.find(params[:id])
     respond_to do |format|
       format.html # _form.html.erb
       format.json { render json: @doctor }
@@ -71,7 +70,7 @@ class DoctorsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def doctor_params
-      params.require(:doctor).permit(:name, :specialty, :phone, :description, :image)
+      params.require(:doctor).permit(:name, :specialty, :phone, :image)
     end
 
   def authorize_doctor!

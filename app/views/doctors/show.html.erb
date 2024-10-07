@@ -56,7 +56,7 @@
       <div class="mb-3">
         <p><strong><%= t('doctors.show.specialty') %>:</strong> <%= @doctor.specialty %></p>
         <p><strong><%= t('doctors.show.phone') %>:</strong> <%= @doctor.phone %></p>
-        <p><strong><%= t('doctors.show.experience') %>:</strong> <%= @doctor.description %></p>
+<!--        <p><strong><%#= t('doctors.show.experience') %>:</strong> <%#= @doctor.description %></p>-->
       </div>
 
       <% if current_user.admin? || current_user == @doctor %>

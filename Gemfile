@@ -15,7 +15,7 @@ gem "jbuilder"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem "mysql2"
+gem 'pg'
 gem "puma"
 gem 'pundit'
 gem 'rails-i18n'
@@ -34,6 +34,7 @@ gem 'telegram-bot-ruby', '~> 1.0'
 
 group :development, :test do
   gem 'omniauth-test'
+  gem 'exception-track', '~> 1.3'
 
   gem 'letter_opener'
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

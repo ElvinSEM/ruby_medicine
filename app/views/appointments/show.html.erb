@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
       <p>
-        <strong><%= t('appointments.show.appointment_date') %>:</strong> <%= l @appointment.start_time, format: :long %>
+        <strong><%= t('appointments.show.appointment_date') %>:</strong> <%= l @appointment.appointment_date, format: :long %>
       </p>
       <p>
         <strong><%= t('appointments.show.doctor') %>:</strong> <%= @appointment.doctor.name %>
@@ -19,7 +19,7 @@
         <strong><%= t('appointments.show.age') %>:</strong> <%= @appointment.age %>
       </p>
       <p>
-        <strong><%= t('appointments.show.additional_info') %>:</strong> <%= @appointment.info %>
+        <strong><%= t('appointments.show.info') %>:</strong> <%= @appointment.info %>
       </p>
     </div>
 
