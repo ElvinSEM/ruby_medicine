@@ -430,6 +430,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
+  arm64-darwin-23
 
 DEPENDENCIES
   active_link_to
@@ -457,7 +458,7 @@ DEPENDENCIES
   pry
   puma
   pundit
-  rails (~> 7.0.8)
+  rails
   rails-controller-testing
   rails-i18n
   redis
@@ -475,7 +476,7 @@ DEPENDENCIES
   whenever
 
 RUBY VERSION
-   ruby 3.0.3p157
+   ruby 3.1.0p0
 
 BUNDLED WITH
    2.4.22
