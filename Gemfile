@@ -13,6 +13,7 @@ gem 'breadcrumbs_on_rails'
 gem 'cssbundling-rails'
 gem 'devise'
 gem 'dotenv-rails', groups: %i[development test]
+gem 'exception_notification', '~> 4.5'
 gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'omniauth'
