@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'exception_notification/sidekiq'
+# require 'exception_notification/sidekiq'
 
 ExceptionTrack.configure do
   # environments for store Exception log in to database.
