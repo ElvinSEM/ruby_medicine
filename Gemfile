@@ -13,7 +13,6 @@ gem 'breadcrumbs_on_rails'
 gem 'cssbundling-rails'
 gem 'devise'
 gem 'dotenv-rails', groups: %i[development test]
-# gem 'exception_notification', '~> 4.5'
 gem 'jbuilder'
 gem 'jsbundling-rails'
 gem 'omniauth'
@@ -36,7 +35,6 @@ gem 'whenever', require: false
 gem 'telegram-bot-ruby', '~> 1.0'
 
 group :development, :test do
-  # gem 'exception-track', '~> 1.3'
   gem 'omniauth-test'
 
   gem 'debug', platforms: %i[mri mingw x64_mingw]
