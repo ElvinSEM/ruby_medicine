@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # require 'sidekiq/web'
 # Rails.application.routes.draw do
 #   mount Sidekiq::Web => '/sidekiq'
@@ -73,26 +75,26 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
-  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+  scope '(:locale)', locale: /#{I18n.available_locales.join('|')}/ do
     root 'home#index'
     resources :users, only: [:show]
     post 'telegram/save_user_id', to: 'telegram#save_user_id'
     resources :appointments do
       member do
-        patch :cancel  # Обработка действия cancel через patch
+        patch :cancel # Обработка действия cancel через patch
       end
     end
     resources :services
     resources :appointments
-    resources :services, only: [:index, :show]
+    resources :services, only: %i[index show]
 
     resources :doctors do
-      resources :reviews, only: [:index, :new, :create, :destroy]
+      resources :reviews, only: %i[index new create destroy]
     end
 
     get '/set_locale/:locale', to: 'application#set_locale', as: :set_locale, defaults: { format: :html }
     get 'search', to: 'pages#search', as: 'search'
-    resources :reviews, only: [:index, :show, :new, :create, :destroy] do
+    resources :reviews, only: %i[index show new create destroy] do
       collection do
         get 'show_all'
       end
