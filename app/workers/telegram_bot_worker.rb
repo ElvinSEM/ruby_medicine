@@ -3,6 +3,6 @@ class TelegramBotWorker
   include Sidekiq::Worker
 
   def perform
-    TelegramBotService.start
+    TelegramBotService.start # Или ваш код для выполнения задачи
   end
 end

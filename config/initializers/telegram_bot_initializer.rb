@@ -1,12 +1,12 @@
-require 'sidekiq'
-require 'telegram_bot_worker' # Убедитесь, что этот файл существует
-#
-# if Rails.env.production? || Rails.env.development?
-#   TelegramBotWorker.perform_async
-# end
+# config/initializers/telegram_bot.rb
+require_relative '../../app/workers/telegram_bot_worker'
 
-#
-# # config/initializers/telegram_bot_initializer.rb
-Thread.new do
-  TelegramBotWorker.perform_async
+Rails.application.config.after_initialize do
+  user = User.first
+  if user
+    message = "Hello, #{user.username}! This is your Telegram message."
+    TelegramBotWorker.perform_async # Вызов без аргументов
+  else
+    Rails.logger.warn 'No users found to send Telegram message.'
+  end
 end

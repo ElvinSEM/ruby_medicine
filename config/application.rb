@@ -25,21 +25,16 @@ module HospitalApp
     Sidekiq.configure_client do |config|
       config.redis = { url: ENV['REDIS_URL'] || 'redis://localhost:6379/0' }
     end
-    #
-    # config.after_initialize do
-    #   # Запускаем воркер для Telegram бота при старте приложения
-    #   TelegramBotWorker.perform_async
-    # end
 
-    config.after_initialize do
-      user = User.first # Или любой другой способ получения пользователя
-      if user
-        message = "Hello, #{user.username}! This is your Telegram message."
-        TelegramBotWorker.perform_async(user.id, message)
-      else
-        Rails.logger.warn "No users found to send Telegram message."
-      end
-    end
+    # config.after_initialize do
+    #   user = User.first # Или любой другой способ получения пользователя
+    #   if user
+    #     message = "Hello, #{user.username}! This is your Telegram message."
+    #     TelegramBotWorker.perform_async(user.id, message)
+    #   else
+    #     Rails.logger.warn "No users found to send Telegram message."
+    #   end
+    # end
 
   end
 
