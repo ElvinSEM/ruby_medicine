@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # # app/jobs/telegram_bot_job.rb
 # class TelegramBotJob < ApplicationJob
 #   queue_as :default
@@ -270,36 +272,37 @@
 #     Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: keyboard_buttons.each_slice(3).to_a)
 #   end
 # end
-#
-# class AppointmentCreationJob < ApplicationJob
-#   queue_as :default
-#
-#   def perform(username, chat_id, appointment_time)
-#     user = User.find_or_create_by(username: username, chat_id: chat_id)
-#     doctor = Doctor.first
-#
-#     if Appointment.exists?(doctor_id: doctor.id, start_time: appointment_time)
-#       bot.api.send_message(chat_id: chat_id, text: "Это время уже занято. Пожалуйста, выберите другое время.")
-#       send_available_slots(bot, chat_id)
-#     else
-#       appointment = Appointment.new(user: user, doctor: doctor, start_time: appointment_time)
-#       if appointment.save
-#         confirmation_message = "Вы успешно записаны на прием к #{doctor.name} на #{appointment.start_time.strftime('%Y-%m-%d %H:%M')}."
-#         bot.api.send_message(chat_id: chat_id, text: confirmation_message)
-#       else
-#         bot.api.send_message(chat_id: chat_id, text: "Ошибка при записи на прием. Попробуйте снова.")
-#       end
-#     end
-#   end
-#
-#   private
-#
-#   def bot
-#     @bot ||= Telegram::Bot::Client.new(ENV['TELEGRAM_BOT_API_TOKEN'])
-#   end
-#
-#   def send_available_slots(bot, chat_id)
-#     available_slots_markup = generate_available_slots
-#     bot.api.send_message(chat_id: chat_id, text: "Пожалуйста, выберите удобное время для приема:", reply_markup: available_slots_markup)
-#   end
-# end
+
+class AppointmentCreationJob < ApplicationJob
+  queue_as :default
+
+  def perform(username, chat_id, appointment_time)
+    user = User.find_or_create_by(username:, chat_id:)
+    doctor = Doctor.first
+
+    if Appointment.exists?(doctor_id: doctor.id, start_time: appointment_time)
+      bot.api.send_message(chat_id:, text: 'Это время уже занято. Пожалуйста, выберите другое время.')
+      send_available_slots(bot, chat_id)
+    else
+      appointment = Appointment.new(user:, doctor:, start_time: appointment_time)
+      if appointment.save
+        confirmation_message = "Вы успешно записаны на прием к #{doctor.name} на #{appointment.start_time.strftime('%Y-%m-%d %H:%M')}."
+        bot.api.send_message(chat_id:, text: confirmation_message)
+      else
+        bot.api.send_message(chat_id:, text: 'Ошибка при записи на прием. Попробуйте снова.')
+      end
+    end
+  end
+
+  private
+
+  def bot
+    @bot ||= Telegram::Bot::Client.new(ENV['TELEGRAM_BOT_API_TOKEN'])
+  end
+
+  def send_available_slots(bot, chat_id)
+    available_slots_markup = generate_available_slots
+    bot.api.send_message(chat_id:, text: 'Пожалуйста, выберите удобное время для приема:',
+                         reply_markup: available_slots_markup)
+  end
+end
