@@ -541,3 +541,19 @@ footer p {
   font-weight: bold; /* Выделение текущей страницы */
   color: #ccc; /* Более мягкий оттенок текущего элемента */
 }
+
+
+/* Для планшетов */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}
+
+/* Для мобильных устройств */
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+}
