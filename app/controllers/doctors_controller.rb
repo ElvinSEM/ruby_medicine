@@ -1,10 +1,12 @@
-class DoctorsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+# frozen_string_literal: true
 
-  before_action :set_doctor, only: %i[ show edit update destroy ]
+class DoctorsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+
+  before_action :set_doctor, only: %i[show edit update destroy]
   before_action :authorize_doctor!
-  after_action :verify_authorized, except: [:index, :show]
-  before_action :add_default_breadcrumbs, only: [:index, :new, :edit, :show]
+  after_action :verify_authorized, except: %i[index show]
+  before_action :add_default_breadcrumbs, only: %i[index new edit show]
 
   def index
     @doctors = Doctor.all
@@ -12,7 +14,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/1
   def show
-    add_breadcrumb @doctor.name, doctor_path(@doctor)  # Отображаем имя доктора в хлебных крошках
+    add_breadcrumb @doctor.name, doctor_path(@doctor) # Отображаем имя доктора в хлебных крошках
 
     authorize @doctor
     respond_to do |format|
@@ -25,7 +27,6 @@ class DoctorsController < ApplicationController
   def new
     @doctor = Doctor.new
     authorize @doctor # Проверяем авторизацию для создания нового доктора
-
   end
 
   # GET /doctors/1/edit
@@ -63,19 +64,21 @@ class DoctorsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_doctor
-      @doctor = Doctor.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def doctor_params
-      params.require(:doctor).permit(:name, :specialty, :phone, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_doctor
+    @doctor = Doctor.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def doctor_params
+    params.require(:doctor).permit(:name, :specialty, :phone, :image)
+  end
 
   def authorize_doctor!
     authorize(@doctor || Doctor)
   end
+
   # Метод для добавления стандартных хлебных крошек
   def add_default_breadcrumbs
     add_breadcrumb I18n.t('breadcrumbs.home'), root_path

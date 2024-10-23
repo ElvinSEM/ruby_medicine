@@ -18,6 +18,9 @@ class ServicesController < ApplicationController
 
   def show
     add_breadcrumb @service.name, service_path(@service)
+    @service = Service.find(params[:id])
+    @appointment = Appointment.new # Инициализируем новую запись
+
   end
 
   def new

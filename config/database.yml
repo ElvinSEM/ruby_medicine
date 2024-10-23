@@ -10,8 +10,7 @@ default: &default
 development:
   <<: *default
   database: HospitalApp_development
-  username: elvin
-  password: 0063
+
 
 test:
   <<: *default

@@ -37,7 +37,7 @@
             </div>
             <div class="form-check mb-3">
               <input type="checkbox" name="acceptance-rules" class="form-check-input" id="acceptance-rules" checked>
-              <label class="form-check-label" for="acceptance-rules"><%= t('services.form.consent', link: link_to(t('services.form.privacy_policy'), '/soglasie-na-obrabotku-personalnyh-dannyh/', target: '_blank')) %></label>
+              <label class="form-check-label" for="acceptance-rules"><%= t('services.form.consent', link: link_to(t('services.form.privacy_policy'), target: '_blank')) %></label>
             </div>
             <button type="submit" class="btn btn-primary btn-block"><%= t('services.actions.submit') %></button>
           </form>
