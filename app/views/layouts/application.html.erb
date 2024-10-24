@@ -236,16 +236,24 @@
     <%= turbo_frame_tag :notices, class: 'notice-group', data: { controller: "notices" } do %>
       <% flash.each do |key, value| %>
         <% [value].flatten.each do |i| %>
-          <div class="alert alert-<%= key %>" role="alert">
-            <%= i %>
+          <div class="alert alert-<%= key %>" role="alert"
+               style="<%= case key
+                          when 'success' then 'color: green;'
+                          when 'alert' then 'color: red;'
+                          when 'notice' then 'color: blue;'
+                          when 'danger' then 'color: orange;'
+                          else ''
+                          end %>">
+            <%= i %> <!-- Выводим сообщение -->
           </div>
         <% end %>
       <% end %>
     <% end %>
 
-    <%= yield %>
+    <%= yield %> <!-- Основной контент страницы -->
   </div>
 </main>
+
 
 <footer class="bg-dark text-white py-3 mt-4">
   <div class="container text-center">
